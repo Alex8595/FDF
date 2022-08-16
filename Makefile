@@ -6,27 +6,52 @@
 #    By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/30 14:35:00 by ahernand          #+#    #+#              #
-#    Updated: 2022/07/30 15:40:59 by ahernand         ###   ########.fr        #
+#    Updated: 2022/08/16 19:02:53 by ahernand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = FdF
+NAME = fdf
 
 CC = gcc 
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS =	srcs/main.c
+SRCS =	srcs/FdF.c			\
+		srcs/mlx_fts.c
 
-OBJS = srcs/main.o
+OBJS = srcs/FdF.o			\
+		srcs/mlx_fts.o
+
+MLX = lib_mlx
+
+
+
+
+
+
+
 
 
 all : $(NAME)
 
+$(MLX) : 
+	@cd minilibx && make
+
 $(OBJS) : $(SRCS)
 
-$(NAME) : $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $@
+$(NAME) : $(OBJS) $(MLX)
+	$(CC) $(CFLAGS) $(OBJS) minilibx/libmlx.a -framework OpenGl -framework AppKit -o $@
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -53,6 +78,7 @@ clean:
 
 fclean:
 	@rm -f $(OBJS)
+	@cd minilibx && make clean
 	@rm -f $(NAME)
 
-re:	fclean all
+re:	clean all
