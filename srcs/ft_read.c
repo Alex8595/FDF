@@ -1,30 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_fts.c                                          :+:      :+:    :+:   */
+/*   ft_read.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/16 18:43:01 by ahernand          #+#    #+#             */
-/*   Updated: 2022/08/17 15:39:20 by ahernand         ###   ########.fr       */
+/*   Created: 2022/08/17 14:29:52 by ahernand          #+#    #+#             */
+/*   Updated: 2022/08/17 20:39:23 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
 
-void	my_mlx_pixel_put(t_dt *data, int x, int y, int color)
+int			ft_strlen(char *str)
 {
-	char	*dst;
+	int		i;
 
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+	i = 0;
+	while (str[i++] != '\0')
+		;
+	return (i);
 }
-
-int	ft_close(int keycode, t_dt *vars)
+int			ft_read(t_dt *sc, char *file)
 {
-	mlx_destroy_window(vars->mlx, vars->win);
-	keycode = 0;
-	
-	exit(0);
+	int		fd;
+	char	*raw;
+	int		size;
+
+	if (ft_strlen(file) <= 0)
+		return (ft_error(2));
+	fd = open(file, O_READONLY);
+	if (fd < 0)
+		return (ft_error(3));
+	raw = malloc(sizeof(char) * 500000);
+	size
 	return (0);
 }

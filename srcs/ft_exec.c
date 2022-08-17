@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FdF.c                                              :+:      :+:    :+:   */
+/*   ft_exec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/30 15:39:32 by ahernand          #+#    #+#             */
-/*   Updated: 2022/08/17 20:30:58 by ahernand         ###   ########.fr       */
+/*   Created: 2022/08/17 14:29:29 by ahernand          #+#    #+#             */
+/*   Updated: 2022/08/17 19:35:00 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
 
-int main(int argc, char **argv)
+void	ft_exec(t_dt *sc)
 {
-	t_dt		sc;
+	sc->mlx = mlx_init();
+	sc->win = mlx_new_window(sc->mlx, 800, 600, "kus");
 
-	if (argc == 2)
+	sc->img = mlx_new_image(sc->mlx, 800, 600);
+	sc->addr = mlx_get_data_addr(sc->img, &sc->bits_per_pixel, &sc->line_length, &sc->endian);
+
+	int i = 0;
+	int j = 0;
+
+	while (j < 800)
 	{
-		if (ft_read(&sc, argv[1]) == 0)
+		while (i < 600)
 		{
-			ft_exec(&sc);
-			mlx_hook(sc.win, 2, 1L << 0, ft_close, &sc);
-			mlx_loop(sc.mlx);
+			my_mlx_pixel_put(sc, j, i, 0x6F8FAF);
+			i++;
 		}
+		i = 0;
+		j++;
 	}
-	return (ft_error(1));
+	mlx_put_image_to_window(sc->mlx, sc->win, sc->img, 0, 0);
 }
