@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:52:30 by ahernand          #+#    #+#             */
-/*   Updated: 2022/08/17 20:38:31 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/09/09 18:32:42 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,14 @@
 int		ft_error(int code)
 {
 	if (code == 1)
-		printf("Usage : ./fdf <filename> [ case_size z_size ]");
+		printf("Usage : ./fdf <filename> [ case_size z_size ]\n");
 	if (code == 2)
-		printf("Map empty.");
+		printf("Map empty.\n");
 	if (code == 3)
-		printf("Can't read the map.");
+		printf("Can't read the map.\n");
+	if (code == 4)
+		printf("Size of map too big.\n");
+	if (code == 100)
+		printf("Malloc Error.\n");
 	return (1);
 }

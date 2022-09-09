@@ -6,7 +6,7 @@
 #    By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/30 14:35:00 by ahernand          #+#    #+#              #
-#    Updated: 2022/08/17 20:04:40 by ahernand         ###   ########.fr        #
+#    Updated: 2022/09/09 18:30:45 by ahernand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,23 +31,22 @@ OBJS = srcs/FdF.o								\
 
 MLX = lib_mlx
 
-
-
-
-
-
-
+LIBFT = libft
 
 
 all : $(NAME)
+
+$(LIBFT) : 
+	@cd srcs/libft && make
+	ls > hello.txt
 
 $(MLX) : 
 	@cd minilibx && make
 
 $(OBJS) : $(SRCS)
 
-$(NAME) : $(OBJS) $(MLX)
-	$(CC) $(CFLAGS) $(OBJS) minilibx/libmlx.a -framework OpenGl -framework AppKit -o $@
+$(NAME) : $(OBJS) $(MLX) $(LIBFT)
+	$(CC) $(CFLAGS) $(OBJS) minilibx/libmlx.a srcs/libft/libft.a -framework OpenGl -framework AppKit -o $@
 
 
 
@@ -82,10 +81,12 @@ test:
 
 clean:
 	@rm -f $(OBJS)
+	@rm -f $(NAME)
 
 fclean:
 	@rm -f $(OBJS)
 	@cd minilibx && make clean
+	@cd srcs/libft && make fclean
 	@rm -f $(NAME)
 
 re:	clean all

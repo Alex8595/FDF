@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 18:33:13 by ahernand          #+#    #+#             */
-/*   Updated: 2022/08/17 20:34:08 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/09/09 18:32:44 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,11 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 # include "../minilibx/mlx.h"
+# include "../srcs/libft/libft.h"
 
 typedef struct		t_dt
 {
@@ -29,6 +33,11 @@ typedef struct		t_dt
 	int				bits_per_pixel;
 	int				line_length;
 	int				endian;
+
+
+	int				size_x;
+	int				size_y;
+
 }					t_dt;
 
 /*
