@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:52:30 by ahernand          #+#    #+#             */
-/*   Updated: 2022/09/09 18:32:42 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/09/12 09:56:51 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,9 @@ int		ft_error(int code)
 	if (code == 100)
 		printf("Malloc Error.\n");
 	return (1);
+}
+
+void	ft_leaks()
+{
+	system("leaks fdf");
 }

@@ -6,7 +6,7 @@
 /*   By: ahernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/02 16:26:37 by ahernand          #+#    #+#             */
-/*   Updated: 2022/09/09 18:32:40 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/09/12 09:36:01 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
+# define BUFFER_SIZE 1
 
 int		get_next_line(int fd, char **line);
 size_t	ft_strlen(const char *s);

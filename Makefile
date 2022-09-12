@@ -6,7 +6,7 @@
 #    By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/30 14:35:00 by ahernand          #+#    #+#              #
-#    Updated: 2022/09/09 18:30:45 by ahernand         ###   ########.fr        #
+#    Updated: 2022/09/12 12:12:28 by ahernand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,6 @@ all : $(NAME)
 
 $(LIBFT) : 
 	@cd srcs/libft && make
-	ls > hello.txt
 
 $(MLX) : 
 	@cd minilibx && make
@@ -89,4 +88,4 @@ fclean:
 	@cd srcs/libft && make fclean
 	@rm -f $(NAME)
 
-re:	clean all
+re:	fclean all
