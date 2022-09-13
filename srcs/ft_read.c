@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:29:52 by ahernand          #+#    #+#             */
-/*   Updated: 2022/09/12 14:17:36 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/09/13 10:45:31 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_read(t_dt *sc, char *file)
 	char	**raw;
 
 	i = 0;
-	raw = malloc(sizeof(char *) * 500);
+	raw = malloc(sizeof(char *) * 3000);
 	if (!raw)
 		return (ft_error(100));
 	if (ft_strlen(file) <= 0)
@@ -35,22 +35,13 @@ int	ft_read(t_dt *sc, char *file)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		return (ft_error(3));
-	while (i < 500 && get_next_line(fd, &raw[i]))
+	while (i < 3000 && get_next_line(fd, &raw[i]))
 		++i;
-	if (i >= 500)
+	if (i >= 3000)
 		return (ft_error(4));
 	ft_save_raw(sc, raw, i);
 	ft_free_raw(raw, i);
 	close(fd);
-
-	int		ij;
-
-	ij = 0;
-	while (ij < sc->size_y)
-	{
-		printf("_%s\n", sc->lines[ij]);
-		++ij;
-	}
 	return (0);
 }
 
