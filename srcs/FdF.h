@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 18:33:13 by ahernand          #+#    #+#             */
-/*   Updated: 2022/09/13 11:30:08 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/09/14 14:25:58 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+# include <math.h>
 # include "../minilibx/mlx.h"
 # include "../srcs/libft/libft.h"
 
@@ -34,7 +35,8 @@ typedef struct		t_dt
 	int				line_length;
 	int				endian;
 
-
+	int				width;
+	int				height;
 
 
 	/*
@@ -76,7 +78,8 @@ void    			ft_free_raw(char **raw, int i);
 **					ft_exec
 */
 
-void    			ft_paint(t_dt *sc);
+void    			ft_paint_x(t_dt *sc);
+void    			ft_paint_y(t_dt *sc);
 void    			dot(t_dt *sc, int j, int i,  int color);
 
 
