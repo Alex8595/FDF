@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 18:33:13 by ahernand          #+#    #+#             */
-/*   Updated: 2022/09/14 14:25:58 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/09/15 12:27:43 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,15 +73,14 @@ void    			ft_free_raw(char **raw, int i);
 
 
 
-
 /*
 **					ft_exec
 */
 
-void    			ft_paint_x(t_dt *sc);
-void    			ft_paint_y(t_dt *sc);
+void    			ft_paint_up(t_dt *sc);
+void    			ft_paint_down(t_dt *sc);
 void    			dot(t_dt *sc, int j, int i,  int color);
-
+void    			join_dots(t_dt *sc, int j, double i);
 
 void				ft_leaks();
 
