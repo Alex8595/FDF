@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:29:29 by ahernand          #+#    #+#             */
-/*   Updated: 2022/09/15 12:35:30 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/09/16 12:30:16 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,17 @@ void	ft_paint_up(t_dt *sc)
 
 void	join_dots(t_dt *sc, int j, double i)
 {
-//	printf("j: %d ,i: %f\n", j, i);
+	int	k;
+
+	k = 0;
+	printf("Prior: j: %d ,i: %f\n", j, i);
+	printf("Next:  j: %d ,i: %f\n\n\n\n", j + 14, i - 7);
+	while (k < 2)
+	{
+		++k;
+	}
 	dot(sc, j, i, 0xFFFFFF);
 }
-
-
 
 
 

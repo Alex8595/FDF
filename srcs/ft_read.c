@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:29:52 by ahernand          #+#    #+#             */
-/*   Updated: 2022/09/15 10:27:16 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/09/16 12:21:22 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,9 @@ int	ft_read(t_dt *sc, char *file)
 		++i;
 	if (i >= 3000)
 		return (ft_error(4));
+	
 	ft_save_raw(sc, raw, i);
+
 	ft_free_raw(raw, i);
 	close(fd);
 	sc->size_x = ft_strlen(sc->lines[0]);

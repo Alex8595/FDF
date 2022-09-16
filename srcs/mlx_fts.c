@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 18:43:01 by ahernand          #+#    #+#             */
-/*   Updated: 2022/09/15 12:35:56 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/09/16 12:18:17 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,21 @@ void	my_mlx_pixel_put(t_dt *data, int x, int y, int color)
 
 int	ft_close(int keycode, t_dt *vars)
 {
+	if (keycode == 53)
+	{
+		ft_clean_dt(vars);
+		mlx_destroy_window(vars->mlx, vars->win);
+		exit(0);
+	}
+	return (0);
+}
+
+int	ft_cross(int keycode, t_dt *vars)
+{
 //	ft_clean_dt(vars);
 //	mlx_destroy_window(vars->mlx, vars->win);
-//	keycode = 0;
-	printf("You suck !\n");	
-//	exit(0);
+	keycode = 0;
+	exit(0);
 	return (0);
 }
 
