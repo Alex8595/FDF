@@ -6,7 +6,7 @@
 #    By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/30 14:35:00 by ahernand          #+#    #+#              #
-#    Updated: 2022/09/12 12:12:28 by ahernand         ###   ########.fr        #
+#    Updated: 2022/09/19 17:14:30 by ahernand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRCS =	srcs/FdF.c								\
 		srcs/mlx_fts.c							\
 		srcs/ft_read.c							\
 		srcs/ft_exec.c							\
+		srcs/ft_coordinates.c					\
 		srcs/ft_error.c
 
 
@@ -27,6 +28,7 @@ OBJS = srcs/FdF.o								\
 		srcs/mlx_fts.o							\
 		srcs/ft_read.o							\
 		srcs/ft_exec.o							\
+		srcs/ft_coordinates.o					\
 		srcs/ft_error.o
 
 MLX = lib_mlx

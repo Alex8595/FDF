@@ -1,33 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FdF.c                                              :+:      :+:    :+:   */
+/*   ft_coordinates.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/30 15:39:32 by ahernand          #+#    #+#             */
-/*   Updated: 2022/09/19 14:55:22 by ahernand         ###   ########.fr       */
+/*   Created: 2022/09/19 17:11:20 by ahernand          #+#    #+#             */
+/*   Updated: 2022/09/19 17:23:27 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
 
-int main(int argc, char **argv)
+void	ft_coordinates(t_dt *sc)
 {
-	atexit(ft_leaks);
-	t_dt		sc;
+	int x;
+	int	y;
 
-	if (argc == 2)
+	x = 0;
+	y = 0;
+	while (x < sc->size_x)
 	{
-		if (ft_read(&sc, argv[1]) == 0)
+		while (y < sc->size_y)
 		{
-			ft_exec(&sc);
-			mlx_hook(sc.win, 2, 1L << 0, ft_close, &sc);
-			mlx_hook(sc.win, 17, (1L << 2), ft_cross, &sc);
-			mlx_loop(sc.mlx);
+			printf("%c ", sc->lines[x][y]);
+			y++;
 		}
-		else
-			return (ft_clean_dt(&sc));
+		printf("\n");
+		++x;
+		y = 0;
 	}
-	return (ft_error(1));
+	ft_allocate_ij(sc);
+}
+
+
+void	ft_allocate_ij(t_dt *sc)
+{
+	int i;
+
+	i = 0;
+	sc->i = malloc(sizeof(int *) * (2 + 1));
+	sc->j = malloc(sizeof(int *) * (2 + 1));
+	printf("_%d_\n", sc->size_y);
 }

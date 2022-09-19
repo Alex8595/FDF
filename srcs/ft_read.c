@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:29:52 by ahernand          #+#    #+#             */
-/*   Updated: 2022/09/16 12:21:22 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/09/19 15:30:50 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ void	ft_save_raw(t_dt *sc, char **raw, int i)
 	int	y;
 	int	j;
 
-	sc->size_y = i;
-	sc->lines = malloc(sizeof(char *) * i);
+	sc->size_y = i + 1;
+	sc->lines = malloc(sizeof(char *) * sc->size_y);
 	if (!raw)
 		return ;
 	i = 0;

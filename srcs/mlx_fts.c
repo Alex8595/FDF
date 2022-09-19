@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 18:43:01 by ahernand          #+#    #+#             */
-/*   Updated: 2022/09/16 12:18:17 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/09/19 15:02:23 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ int	ft_close(int keycode, t_dt *vars)
 {
 	if (keycode == 53)
 	{
-		ft_clean_dt(vars);
 		mlx_destroy_window(vars->mlx, vars->win);
 		exit(0);
+		ft_clean_dt(vars);
 	}
 	return (0);
 }
