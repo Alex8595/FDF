@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:29:29 by ahernand          #+#    #+#             */
-/*   Updated: 2022/09/19 17:13:53 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/09/20 12:29:11 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	ft_exec(t_dt *sc)
 	sc->addr = mlx_get_data_addr(sc->img, &sc->bits_per_pixel, &sc->line_length, &sc->endian);
 
 	ft_coordinates(sc);
-	ft_paint_up(sc);
-	ft_paint_down(sc);
+//	ft_paint_up(sc);
+//	ft_paint_down(sc);
 	mlx_put_image_to_window(sc->mlx, sc->win, sc->img, 0, 0);
 }
 
@@ -62,7 +62,6 @@ void	ft_paint_up(t_dt *sc)
 	{
 		while (j < (sc->size_x * 14) - 4 + l)
 		{
-
 			if ((j - 10) % 14 == 0)
 				join_dots_up(sc, (double)j, i - k);
 			k += 0.5;

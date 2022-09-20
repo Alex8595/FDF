@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 18:33:13 by ahernand          #+#    #+#             */
-/*   Updated: 2022/09/19 17:19:02 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/09/20 11:30:55 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,6 @@ void				ft_leaks();
 
 void				ft_coordinates(t_dt *sc);
 void				ft_allocate_ij(t_dt *sc);
+void 				ft_fill_i(t_dt *sc);
 
 #endif
