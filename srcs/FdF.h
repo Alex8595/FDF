@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 18:33:13 by ahernand          #+#    #+#             */
-/*   Updated: 2022/09/20 11:30:55 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/09/21 17:08:19 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,15 @@ void    			ft_free_raw(char **raw, int i);
 void    			ft_paint_up(t_dt *sc);
 void    			ft_paint_down(t_dt *sc);
 void    			dot(t_dt *sc, int j, int i,  int color);
-void    			join_dots_up(t_dt *sc, double j, double i);
-void    			join_dots_down(t_dt *sc, double j, double i);
+void    			join_dots_up(t_dt *sc, int j, int i);
+void    			join_dots_up_hub(t_dt *sc, int j, int i);
+void    			join_dots_up_more_x(t_dt *sc, int j, int i);
+void    			join_dots_up_more_y(t_dt *sc, int j, int i);
+
+void    			join_dots_down(t_dt *sc, int j, int i);
+void    			join_dots_down_hub(t_dt *sc, int j, int i);
+void    			join_dots_down_more_x(t_dt *sc, int j, int i);
+void    			join_dots_down_more_y(t_dt *sc, int j, int i);
 
 void				ft_leaks();
 
@@ -97,5 +104,7 @@ void				ft_leaks();
 void				ft_coordinates(t_dt *sc);
 void				ft_allocate_ij(t_dt *sc);
 void 				ft_fill_i(t_dt *sc);
+void 				ft_fill_j(t_dt *sc);
+void				ft_fill_depth(t_dt *sc);
 
 #endif
