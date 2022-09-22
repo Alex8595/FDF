@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:52:30 by ahernand          #+#    #+#             */
-/*   Updated: 2022/09/12 09:56:51 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/09/22 11:55:48 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int		ft_error(int code)
 		printf("Can't read the map.\n");
 	if (code == 4)
 		printf("Size of map too big.\n");
+	if (code == 5)
+		printf("Empty line detected.\n");
 	if (code == 100)
 		printf("Malloc Error.\n");
 	return (1);

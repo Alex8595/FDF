@@ -6,11 +6,19 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:29:29 by ahernand          #+#    #+#             */
-/*   Updated: 2022/09/21 17:40:58 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/09/22 11:39:25 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
+
+/*
+**		ft_exec
+**
+**		Draws the Fils in the screen.
+**
+**
+*/
 
 void	ft_exec(t_dt *sc)
 {
@@ -24,8 +32,10 @@ void	ft_exec(t_dt *sc)
 	sc->addr = mlx_get_data_addr(sc->img, &sc->bits_per_pixel, &sc->line_length, &sc->endian);
 
 	ft_coordinates(sc);
-//	ft_paint_up(sc);
+	ft_paint_up(sc);
 	ft_paint_down(sc);
+	printf("_y: %d_\n", sc->size_y);
+	printf("_x :%d_\n", sc->size_x);
 	mlx_put_image_to_window(sc->mlx, sc->win, sc->img, 0, 0);
 }
 
@@ -48,7 +58,6 @@ void	ft_paint_down(t_dt *sc)
 	{
 		while (l < sc->size_x)
 		{
-//			dot(sc, sc->j[k][l], sc->i[k][l], 0xFFFFFF);
 			join_dots_down_hub(sc, k, l);
 			l++;
 		}
@@ -75,10 +84,10 @@ void	join_dots_down_more_y(t_dt *sc, int k, int l)
 	b = 0;
 	while (a + sc->i[k][l] < sc->i[k + 1][l])
 	{
-		b += fabs((float)sc->j[k][l + 1] - sc->j[k][l]) / abs(sc->i[k + 1][l] - sc->i[k][l]);
-//		if (sc->i[k][l + 1] < sc->i[k][l])
-//			dot(sc, sc->j[k][l] + a, sc->i[k][l] - b, 0xFFFFFF);
-//		else
+		b += fabs((float)sc->j[k + 1][l] - sc->j[k][l]) / fabs((float)sc->i[k + 1][l] - sc->i[k][l]);
+		if (sc->i[k + 1][l] < sc->i[k][l])
+			dot(sc, sc->j[k][l] + b, sc->i[k][l] - a, 0xFFFFFF);
+		else
 			dot(sc, sc->j[k][l] + b, sc->i[k][l] + a, 0xFFFFFF);
 		++a;
 	}
@@ -94,9 +103,9 @@ void	join_dots_down_more_x(t_dt *sc, int k, int l)
 	while (a + sc->j[k][l] < sc->j[k + 1][l])
 	{
 		b += fabs((float)sc->i[k + 1][l] - sc->i[k][l]) / abs(sc->j[k + 1][l] - sc->j[k][l]);
-//		if (sc->i[k][l + 1] < sc->i[k][l])
-//			dot(sc, sc->j[k][l] + a, sc->i[k][l] - b, 0xFFFFFF);
-//		else
+		if (sc->i[k + 1][l] < sc->i[k][l])
+			dot(sc, sc->j[k][l] + a, sc->i[k][l] - b, 0xFFFFFF);
+		else
 			dot(sc, sc->j[k][l] + a, sc->i[k][l] + b, 0xFFFFFF);
 		++a;
 	}
@@ -151,7 +160,6 @@ void	ft_paint_up(t_dt *sc)
 	{
 		while (l < sc->size_x - 1)
 		{
-//			dot(sc, sc->j[k][l], sc->i[k][l], 0xFFFFFF);
 			join_dots_up_hub(sc, k, l);
 			l++;
 		}

@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 15:39:32 by ahernand          #+#    #+#             */
-/*   Updated: 2022/09/21 13:04:30 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/09/22 11:55:32 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int main(int argc, char **argv)
 {
-	atexit(ft_leaks);
 	t_dt		sc;
 
 	if (argc == 2)

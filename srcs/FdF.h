@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 18:33:13 by ahernand          #+#    #+#             */
-/*   Updated: 2022/09/21 17:08:19 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/09/22 12:11:22 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct		t_dt
 	int				size_x;
 	int				size_y;
 	
-	char			**lines;
+	int				**lines;
 
 
 	int				**i;

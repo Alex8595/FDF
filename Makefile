@@ -6,7 +6,7 @@
 #    By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/30 14:35:00 by ahernand          #+#    #+#              #
-#    Updated: 2022/09/19 17:14:30 by ahernand         ###   ########.fr        #
+#    Updated: 2022/09/22 12:01:11 by ahernand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ $(MLX) :
 $(OBJS) : $(SRCS)
 
 $(NAME) : $(OBJS) $(MLX) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJS) minilibx/libmlx.a srcs/libft/libft.a -framework OpenGl -framework AppKit -o $@
+	@$(CC) $(CFLAGS) $(OBJS) minilibx/libmlx.a srcs/libft/libft.a -framework OpenGl -framework AppKit -o $@
 
 
 
@@ -55,7 +55,7 @@ $(NAME) : $(OBJS) $(MLX) $(LIBFT)
 
 
 
-
+.SILENT: MLX LIBFT
 
 
 
