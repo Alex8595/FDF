@@ -3,32 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahernand <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 16:40:10 by ahernand          #+#    #+#             */
-/*   Updated: 2022/09/13 10:29:47 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/09/23 12:20:29 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-char	*ft_strdup(const char *s1)
-{
-	char	*str;
-	int		i;
-
-	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
-	if (!str)
-		return (NULL);
-	i = 0;
-	while (s1[i])
-	{
-		str[i] = s1[i];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
-}
 
 void	ft_free(char **str)
 {

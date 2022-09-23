@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:11:20 by ahernand          #+#    #+#             */
-/*   Updated: 2022/09/21 14:48:27 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/09/23 11:25:13 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,7 @@ void	ft_fill_depth(t_dt *sc)
 	{
 		while (j < sc->size_x)
 		{
-			sc->i[i][j] = sc->i[i][j] - ((sc->lines[i][j] - 48) * 20);
+			sc->i[i][j] = sc->i[i][j] - (sc->lines[i][j] * 20);
 			++j;
 		}
 		j = 0;

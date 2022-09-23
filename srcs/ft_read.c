@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:29:52 by ahernand          #+#    #+#             */
-/*   Updated: 2022/09/22 12:22:05 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/09/23 12:36:19 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,9 @@ int	ft_read(t_dt *sc, char *file)
 		++i;
 	if (i >= 3000)
 		return (ft_error(4));
-	
 	ft_save_raw(sc, raw, i);
-
 	ft_free_raw(raw, i);
 	close(fd);
-	sc->size_x = ft_strlen(sc->lines[0]);
 	return (0);
 }
 
@@ -57,32 +54,44 @@ int	ft_read(t_dt *sc, char *file)
 
 void	ft_save_raw(t_dt *sc, char **raw, int i)
 {
-	int	y;
-	int	j;
-
 	sc->size_y = i + 1;
+	sc->size_x = ft_n_dots(raw[i]);
 	sc->lines = malloc(sizeof(int*) * sc->size_y);
 	if (!raw)
 		return ;
 	i = 0;
-	y = 0;
-	j = 0;
 	while (i < sc->size_y)
 	{
-		//TODO
 		sc->lines[i] = malloc(sizeof(int) * (ft_n_dots(raw[i])));
-		while (raw[i][y] != '\0')
-		{
-			if (raw[i][y] != ' ')
-			{
-				sc->lines[i][j] = ft_atoi(raw[i][y]);
-				++j;
-			}
-			++y;
-		}
-		y = 0;
-		j = 0;
+		ft_fill_lines(sc, raw, i);
 		i++;
+	}
+}
+
+
+
+void    ft_fill_lines(t_dt *sc, char **raw, int i)
+{
+	int	j;
+	int k;
+	char	*aux;
+
+	j = 0;
+	k = 0;
+	while (raw[i][j] != '\0')
+	{
+		while (ft_isdigit(raw[i][j]))
+			k++;			
+		if (k != 0)
+		{
+			aux = ft_strdup(raw[i]);
+			aux[j + k] = '\0';
+			sc->lines[i][j] = ft_atoi(&aux[j]);
+			free(aux);
+			j += k;
+			k = 0;
+		}
+		++i;
 	}
 }
 
@@ -102,12 +111,16 @@ int	ft_n_dots(char *str)
 	n = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] != ' ')
-			++n;
-		++i;
+		if (ft_isdigit(str[i]))
+			n++;
+		while (str[i] != '\0' && ft_isdigit(str[i]))
+			++i;
+		if (str[i] != '\0')
+			++i;
 	}
 	if (i == 0)
 		exit(ft_error(5));
+	printf("dots:.%d.\n", n);
 	return (n);
 }
 

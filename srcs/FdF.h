@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 18:33:13 by ahernand          #+#    #+#             */
-/*   Updated: 2022/09/22 12:11:22 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/09/23 12:02:35 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int					ft_read(t_dt *sc, char *ft_read);
 void    			ft_save_raw(t_dt *sc, char **raw, int i);
 int					ft_n_dots(char *str);
 void    			ft_free_raw(char **raw, int i);
-
+void				ft_fill_lines(t_dt *sc, char **raw, int i);
 
 
 /*

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahernand <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/02 16:26:37 by ahernand          #+#    #+#             */
-/*   Updated: 2022/09/13 10:30:14 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/09/23 12:20:59 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+# include "libft.h"
 # include <stdio.h>
 # include <stdlib.h>
 # define BUFFER_SIZE 8 
