@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:11:20 by ahernand          #+#    #+#             */
-/*   Updated: 2022/09/23 11:25:13 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/09/26 13:48:15 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_coordinates(t_dt *sc)
 	{
 		while (x < sc->size_x)
 		{
-			printf("%c ", sc->lines[y][x]);
+			printf("%d ", sc->lines[y][x]);
 			x++;
 		}
 		printf("\n");
@@ -94,6 +94,8 @@ void	ft_fill_j(t_dt *sc)
 
 	x = 0;
 	y = 0;
+
+	printf("\n\nJ Coords:\n");
 	while (y < sc->size_y)
 	{
 		while (x < sc->size_x)
@@ -136,7 +138,8 @@ void	ft_fill_i(t_dt *sc)
 			j = 1;
 		}
 	}
-/*
+	printf("\n\ni Coords:\n");
+
 	int x;
 	int	y;
 
@@ -153,7 +156,6 @@ void	ft_fill_i(t_dt *sc)
 		x = 0;
 		++y;
 	}
-	*/
 }
 
 
@@ -176,7 +178,7 @@ void	ft_fill_depth(t_dt *sc)
 		++i;
 	}
 
-
+	printf("\n\nAfter Depth:\n");
 	int x;
 	int	y;
 

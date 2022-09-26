@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:29:52 by ahernand          #+#    #+#             */
-/*   Updated: 2022/09/23 12:36:19 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/09/26 16:48:03 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	ft_read(t_dt *sc, char *file)
 	if (i >= 3000)
 		return (ft_error(4));
 	ft_save_raw(sc, raw, i);
-	ft_free_raw(raw, i);
+	ft_free_raw(sc, raw);
 	close(fd);
 	return (0);
 }
@@ -52,10 +52,23 @@ int	ft_read(t_dt *sc, char *file)
 **
 */
 
+
+void	ft_fix_empty_line(t_dt *sc, char **raw)
+{
+	if (sc->size_y - 1 > 0 && raw[sc->size_y - 1][0] == '\0')
+	{
+		if (sc->size_y - 2 > 0 && raw[sc->size_y - 2][0] == '\0')
+			exit(ft_error(5));
+		free(raw[sc->size_y - 1]);
+		sc->size_y--;
+	}
+}
+
 void	ft_save_raw(t_dt *sc, char **raw, int i)
 {
 	sc->size_y = i + 1;
-	sc->size_x = ft_n_dots(raw[i]);
+	ft_fix_empty_line(sc, raw);
+	sc->size_x = ft_n_dots(raw[0]);
 	sc->lines = malloc(sizeof(int*) * sc->size_y);
 	if (!raw)
 		return ;
@@ -73,25 +86,29 @@ void	ft_save_raw(t_dt *sc, char **raw, int i)
 void    ft_fill_lines(t_dt *sc, char **raw, int i)
 {
 	int	j;
-	int k;
+	int	k;
+	int	l;
 	char	*aux;
 
-	j = 0;
 	k = 0;
+	j = 0;
+	l = 0;
 	while (raw[i][j] != '\0')
 	{
-		while (ft_isdigit(raw[i][j]))
-			k++;			
-		if (k != 0)
-		{
-			aux = ft_strdup(raw[i]);
-			aux[j + k] = '\0';
-			sc->lines[i][j] = ft_atoi(&aux[j]);
-			free(aux);
-			j += k;
-			k = 0;
-		}
-		++i;
+		while (!ft_isdigit(raw[i][j]))
+			++j;
+		printf("j: %d, k: %d\n", j, k);
+		while (ft_isdigit(raw[i][j + k]))
+			++k;
+		aux = ft_strdup(raw[i]);
+		aux[j + k] = '\0';
+		sc->lines[i][l] = ft_atoi(&aux[j]);
+		l++;
+		free(aux);
+		j += k;
+		k = 0;
+		if (raw[i][j] != '\0')
+			++j;
 	}
 }
 
@@ -118,9 +135,6 @@ int	ft_n_dots(char *str)
 		if (str[i] != '\0')
 			++i;
 	}
-	if (i == 0)
-		exit(ft_error(5));
-	printf("dots:.%d.\n", n);
 	return (n);
 }
 
@@ -136,12 +150,12 @@ int	ft_n_dots(char *str)
 **
 */
 
-void	ft_free_raw(char **raw, int i)
+void	ft_free_raw(t_dt *sc, char **raw)
 {
 	int	j;
 
 	j = 0;
-	while (j < i + 1)
+	while (j < sc->size_y)
 	{
 		free(raw[j]);
 		++j;
