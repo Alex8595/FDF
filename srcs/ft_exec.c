@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:29:29 by ahernand          #+#    #+#             */
-/*   Updated: 2022/09/26 17:24:48 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/09/27 12:27:33 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,13 @@ void	join_dots_down_more_y(t_dt *sc, int k, int l)
 	b = 0;
 	while (a + sc->i[k][l] < sc->i[k + 1][l])
 	{
-		b += fabs((float)sc->j[k + 1][l] - sc->j[k][l]) / fabs((float)sc->i[k + 1][l] - sc->i[k][l]);
+		b += fabs((double)sc->j[k + 1][l] - (sc->j[k][l])) / (sc->i[k + 1][l] - sc->i[k][l]);
+
+		if (k == 0 && (l == 2 || l == 3))
+		{
+			printf("Diff %f\n", b);
+			printf("i : %d | j : %d | current j %f | current i %d\n\n", k, l, sc->j[k][l] + b, sc->i[k][l] - a);
+		}
 		if (sc->i[k + 1][l] < sc->i[k][l])
 			dot(sc, sc->j[k][l] + b, sc->i[k][l] - a, 0xFFFFFF);
 		else
@@ -204,7 +210,7 @@ void	join_dots_up_more_y(t_dt *sc, int k, int l)
 	b = 0;
 	while (a < abs(sc->i[k][l] - sc->i[k][l + 1]))
 	{
-		b += fabs((float)sc->j[k][l + 1] - sc->j[k][l]) / abs(sc->i[k][l + 1] - sc->i[k][l]);
+		b += fabs(((float)sc->j[k][l + 1] - 1) - sc->j[k][l]) / abs(sc->i[k][l + 1] - sc->i[k][l]);
 		if (sc->i[k][l + 1] < sc->i[k][l])
 			dot(sc, sc->j[k][l] + b, sc->i[k][l] - a, 0xFFFFFF);
 		else

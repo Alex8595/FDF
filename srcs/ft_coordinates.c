@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:11:20 by ahernand          #+#    #+#             */
-/*   Updated: 2022/09/26 13:48:15 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/09/27 12:01:35 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 
 void	ft_coordinates(t_dt *sc)
 {
-	printf("_ X: %d , Y %d\n", sc->size_x, sc->size_y);
 	int x;
 	int	y;
 
