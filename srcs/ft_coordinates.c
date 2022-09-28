@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:11:20 by ahernand          #+#    #+#             */
-/*   Updated: 2022/09/27 12:01:35 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/09/28 14:52:24 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	ft_fill_j(t_dt *sc)
 			j = 1;
 		}
 	}
-
+/*
 	int x;
 	int	y;
 
@@ -106,6 +106,7 @@ void	ft_fill_j(t_dt *sc)
 		x = 0;
 		++y;
 	}
+	*/
 }
 
 
@@ -137,6 +138,7 @@ void	ft_fill_i(t_dt *sc)
 			j = 1;
 		}
 	}
+/*	
 	printf("\n\ni Coords:\n");
 
 	int x;
@@ -155,6 +157,7 @@ void	ft_fill_i(t_dt *sc)
 		x = 0;
 		++y;
 	}
+*/
 }
 
 
@@ -176,7 +179,7 @@ void	ft_fill_depth(t_dt *sc)
 		j = 0;
 		++i;
 	}
-
+/*
 	printf("\n\nAfter Depth:\n");
 	int x;
 	int	y;
@@ -194,4 +197,5 @@ void	ft_fill_depth(t_dt *sc)
 		x = 0;
 		++y;
 	}
+	*/
 }

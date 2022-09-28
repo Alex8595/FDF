@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:29:52 by ahernand          #+#    #+#             */
-/*   Updated: 2022/09/26 16:48:03 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/09/28 14:59:13 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,12 +97,14 @@ void    ft_fill_lines(t_dt *sc, char **raw, int i)
 	{
 		while (!ft_isdigit(raw[i][j]))
 			++j;
-		printf("j: %d, k: %d\n", j, k);
 		while (ft_isdigit(raw[i][j + k]))
 			++k;
 		aux = ft_strdup(raw[i]);
 		aux[j + k] = '\0';
-		sc->lines[i][l] = ft_atoi(&aux[j]);
+		if (j != 0 && aux[j - 1] == '-')
+			sc->lines[i][l] = ft_atoi(&aux[j - 1]);
+		else
+			sc->lines[i][l] = ft_atoi(&aux[j]);
 		l++;
 		free(aux);
 		j += k;
