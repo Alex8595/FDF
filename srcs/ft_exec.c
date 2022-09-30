@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:29:29 by ahernand          #+#    #+#             */
-/*   Updated: 2022/09/28 15:29:56 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/09/30 12:07:17 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 
 void	ft_exec(t_dt *sc)
 {
-	sc->width = 950;
-	sc->height = 600;
+	sc->width = 600;
+	sc->height = 400;
 
 	sc->mlx = mlx_init();
 	sc->win = mlx_new_window(sc->mlx, sc->width, sc->height, "kus (soon) plsss :)");
