@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:29:29 by ahernand          #+#    #+#             */
-/*   Updated: 2022/09/30 12:07:17 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/10/03 15:49:43 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 
 void	ft_exec(t_dt *sc)
 {
-	sc->width = 600;
-	sc->height = 400;
+	sc->width = 100 + (14  * (sc->size_x - 1)) + ((sc->size_y - 1) * 14);
+	sc->height = ft_calculate_height(sc);
 
 	sc->mlx = mlx_init();
 	sc->win = mlx_new_window(sc->mlx, sc->width, sc->height, "kus (soon) plsss :)");
@@ -37,9 +37,11 @@ void	ft_exec(t_dt *sc)
 	mlx_put_image_to_window(sc->mlx, sc->win, sc->img, 0, 0);
 }
 
+int	ft_calculate_height(t_data *sc)
+{
 
-
-
+	return (100 + (7  * (sc->size_x - 1)) + ((sc->size_y - 1) * 7));
+}
 
 
 

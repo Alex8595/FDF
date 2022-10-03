@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 15:39:32 by ahernand          #+#    #+#             */
-/*   Updated: 2022/09/28 14:47:47 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/10/03 15:50:11 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int main(int argc, char **argv)
 {
 	t_dt		sc;
 
+	sc.angle = 0;
 	if (argc == 2)
 	{
 		if (ft_read(&sc, argv[1]) == 0)

@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:11:20 by ahernand          #+#    #+#             */
-/*   Updated: 2022/09/28 14:52:24 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/10/03 15:48:24 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void	ft_coordinates(t_dt *sc)
 	ft_fill_j(sc);
 	ft_fill_i(sc);
 	ft_fill_depth(sc);
+	ft_roatation(sc);
 }
-
 
 void	ft_allocate_ij(t_dt *sc)
 {
@@ -69,7 +69,7 @@ void	ft_fill_j(t_dt *sc)
 
 	i = 0;
 	j = 1;
-	margin = 10;
+	margin = 50;
 	sc->j[0][0] = margin;
 	while (i < sc->size_y)
 	{
@@ -120,7 +120,8 @@ void	ft_fill_i(t_dt *sc)
 
 	i = 0;
 	j = 1;
-	margin = 250;
+	//margin = 250;
+	margin = sc->height - 50 - ((sc->size_y -1) * 7);
 	sc->i[0][0] = margin;
 	while (i < sc->size_y)
 	{
@@ -198,4 +199,30 @@ void	ft_fill_depth(t_dt *sc)
 		++y;
 	}
 	*/
+}
+
+
+
+void	ft_roatation(t_dt *sc)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (i < sc->size_y)
+	{
+		while (j < sc->size_x)
+		{
+			//sc->i[i][j] += cos(sc->angle);
+			//sc->j[i][j] +=3;
+			++j;
+			sc->angle++;
+		}
+		j = 0;
+		++i;
+	}
+
+
+	
 }
