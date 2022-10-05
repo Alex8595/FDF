@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:11:20 by ahernand          #+#    #+#             */
-/*   Updated: 2022/10/03 15:48:24 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/10/05 14:33:51 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,7 @@ void	ft_fill_i(t_dt *sc)
 
 	i = 0;
 	j = 1;
-	//margin = 250;
-	margin = sc->height - 50 - ((sc->size_y -1) * 7);
+	margin = 50 + sc->highest_y;
 	sc->i[0][0] = margin;
 	while (i < sc->size_y)
 	{
@@ -139,7 +138,7 @@ void	ft_fill_i(t_dt *sc)
 			j = 1;
 		}
 	}
-/*	
+
 	printf("\n\ni Coords:\n");
 
 	int x;
@@ -158,7 +157,6 @@ void	ft_fill_i(t_dt *sc)
 		x = 0;
 		++y;
 	}
-*/
 }
 
 
@@ -180,7 +178,7 @@ void	ft_fill_depth(t_dt *sc)
 		j = 0;
 		++i;
 	}
-/*
+
 	printf("\n\nAfter Depth:\n");
 	int x;
 	int	y;
@@ -198,7 +196,6 @@ void	ft_fill_depth(t_dt *sc)
 		x = 0;
 		++y;
 	}
-	*/
 }
 
 

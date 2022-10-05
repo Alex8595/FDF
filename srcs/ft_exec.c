@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:29:29 by ahernand          #+#    #+#             */
-/*   Updated: 2022/10/03 15:49:43 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/10/05 15:40:13 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_exec(t_dt *sc)
 	sc->height = ft_calculate_height(sc);
 
 	sc->mlx = mlx_init();
-	sc->win = mlx_new_window(sc->mlx, sc->width, sc->height, "kus (soon) plsss :)");
+	sc->win = mlx_new_window(sc->mlx, sc->width, sc->height, "kus (inmidiatly) plsss >:(");
 
 	sc->img = mlx_new_image(sc->mlx, sc->width, sc->height);
 	sc->addr = mlx_get_data_addr(sc->img, &sc->bits_per_pixel, &sc->line_length, &sc->endian);
@@ -37,10 +37,29 @@ void	ft_exec(t_dt *sc)
 	mlx_put_image_to_window(sc->mlx, sc->win, sc->img, 0, 0);
 }
 
-int	ft_calculate_height(t_data *sc)
+int	ft_calculate_height(t_dt *sc)
 {
+	int i;
+	int j;
+	int	dif;
 
-	return (100 + (7  * (sc->size_x - 1)) + ((sc->size_y - 1) * 7));
+	i = 0;
+	j = 0;
+	while (i < sc->size_y)
+	{
+		while (j < sc->size_x)	
+		{
+			dif = (j * sc->line_height) + (sc->lines[i][j] * sc->line_depth) - (i * sc->line_height);
+			if (dif > sc->highest_y)
+				sc->highest_y = dif;
+			if (dif < sc->lowest_y)
+				sc->lowest_y= dif;
+			++j;
+		}
+		j = 0;
+		++i;
+	}
+	return (sc->highest_y + abs(sc->lowest_y) + 100);
 }
 
 
@@ -73,7 +92,6 @@ void	join_dots_down_hub(t_dt *sc, int k, int l)
 		join_dots_down_more_y(sc, k, l);
 	else
 		join_dots_down_more_x(sc, k, l);
-
 }
 
 void	join_dots_down_more_y(t_dt *sc, int k, int l)
@@ -83,14 +101,19 @@ void	join_dots_down_more_y(t_dt *sc, int k, int l)
 
 	a = 0;
 	b = 0;
-	while (a + sc->i[k][l] < sc->i[k + 1][l])
+	while (abs((sc->i[k][l] +  a) - sc->i[k + 1][l]) > 0)
 	{
 		b += fabs((double)sc->j[k + 1][l] - (sc->j[k][l])) / (sc->i[k + 1][l] - sc->i[k][l]);
 		if (sc->i[k + 1][l] < sc->i[k][l])
-			dot(sc, sc->j[k][l] + b, sc->i[k][l] - a, 0xFFFFFF);
+		{
+			dot(sc, sc->j[k][l] - b, sc->i[k][l] + a, 0xFFFFFF);
+			--a;
+		}
 		else
+		{
 			dot(sc, sc->j[k][l] + b, sc->i[k][l] + a, 0xFFFFFF);
-		++a;
+			++a;
+		}
 	}
 }
 
@@ -103,7 +126,8 @@ void	join_dots_down_more_x(t_dt *sc, int k, int l)
 	b = 0;
 	while (a + sc->j[k][l] < sc->j[k + 1][l])
 	{
-		b += fabs(((float)sc->i[k + 1][l] - sc->i[k][l])) / abs(sc->j[k + 1][l] - sc->j[k][l] + 1);
+//		b += fabs(((float)sc->i[k + 1][l] - sc->i[k][l])) / abs(sc->j[k + 1][l] - sc->j[k][l] + 1);
+		b += fabs(((float)sc->i[k + 1][l] - sc->i[k][l])) / abs(sc->j[k + 1][l] - sc->j[k][l]);
 		if (sc->i[k + 1][l] < sc->i[k][l])
 			dot(sc, sc->j[k][l] + a, sc->i[k][l] - b + 1, 0xFFFFFF);
 		else
@@ -206,7 +230,8 @@ void	join_dots_up_more_y(t_dt *sc, int k, int l)
 	b = 0;
 	while (a < abs(sc->i[k][l] - sc->i[k][l + 1]))
 	{
-		b += fabs(((float)sc->j[k][l + 1] - 1) - sc->j[k][l]) / abs(sc->i[k][l + 1] - sc->i[k][l]);
+//		b += fabs(((float)sc->j[k][l + 1] - 1) - sc->j[k][l]) / abs(sc->i[k][l + 1] - sc->i[k][l]);
+		b += fabs(((float)sc->j[k][l + 1]) - sc->j[k][l]) / abs(sc->i[k][l + 1] - sc->i[k][l]);
 		if (sc->i[k][l + 1] < sc->i[k][l])
 			dot(sc, sc->j[k][l] + b, sc->i[k][l] - a, 0xFFFFFF);
 		else

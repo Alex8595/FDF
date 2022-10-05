@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 18:33:13 by ahernand          #+#    #+#             */
-/*   Updated: 2022/10/03 15:50:06 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/10/05 14:12:12 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,14 @@ typedef struct		t_dt
 	**
 	*/
 
+	int				highest_y;
+	int				lowest_y;
+
+
+	int				line_height;
+	int				line_width;
+	int				line_depth;
+
 	int				angle;
 
 	int				size_x;
@@ -63,12 +71,20 @@ void				my_mlx_pixel_put(t_dt *sc, int x, int y, int color);
 int					ft_close(int keycode, t_dt *vars);
 
 void				ft_exec(t_dt *sc);
-int					ft_calculate_height(t_data *sc);
 
 
 int					ft_error(int code);
 int					ft_clean_dt(t_dt *vars);
 int					ft_cross(int keycode, t_dt *vars);
+
+
+
+
+/*
+**
+*/
+
+void				ft_init_vars(t_dt *sc);
 
 
 
@@ -84,10 +100,13 @@ void    			ft_free_raw(t_dt *sc, char **raw);
 void				ft_fill_lines(t_dt *sc, char **raw, int i);
 
 
+
+
 /*
 **					ft_exec
 */
 
+int					ft_calculate_height(t_dt *sc);
 void    			ft_paint_up(t_dt *sc);
 void    			ft_paint_down(t_dt *sc);
 void    			dot(t_dt *sc, int j, int i,  int color);
@@ -102,6 +121,9 @@ void    			join_dots_down_more_x(t_dt *sc, int j, int i);
 void    			join_dots_down_more_y(t_dt *sc, int j, int i);
 
 void				ft_leaks();
+
+
+
 
 /*
 **					ft_coordinates
