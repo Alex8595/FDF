@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 15:39:32 by ahernand          #+#    #+#             */
-/*   Updated: 2022/10/05 14:12:26 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/10/06 11:19:34 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int main(int argc, char **argv)
 {
 	t_dt		sc;
 
+	atexit(ft_leaks);
 	ft_init_vars(&sc);
 	if (argc == 2)
 	{
@@ -27,9 +28,9 @@ int main(int argc, char **argv)
 			mlx_loop(sc.mlx);
 		}
 		else
-			return (ft_clean_dt(&sc));
+			exit(ft_clean_dt(&sc));
 	}
-	return (ft_error(1));
+	exit(ft_error(1));
 }
 
 //leak when non existent file .fdf

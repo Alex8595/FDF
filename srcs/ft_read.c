@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:29:52 by ahernand          #+#    #+#             */
-/*   Updated: 2022/10/05 15:02:36 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/10/06 12:25:14 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@ int	ft_read(t_dt *sc, char *file)
 		return (ft_error(2));
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
+	{
+		free(raw);
 		return (ft_error(3));
+	}
 	while (i < 3000 && get_next_line(fd, &raw[i]))
 		++i;
 	if (i >= 3000)
@@ -97,20 +100,32 @@ void    ft_fill_lines(t_dt *sc, char **raw, int i)
 	{
 		while (!ft_isdigit(raw[i][j]))
 			++j;
-		while (ft_isdigit(raw[i][j + k]))
-			++k;
-		aux = ft_strdup(raw[i]);
-		aux[j + k] = '\0';
-		if (j != 0 && aux[j - 1] == '-')
-			sc->lines[i][l] = ft_atoi(&aux[j - 1]);
+		if (j != 0 && aux[j - 1] == ',')
+		{
+			j += 2;
+			while (ft_isdigit(raw[i][j + k]))
+				++k;
+			aux = ft_strdup(raw[i]);
+			if (raw[i][j] != '\0')
+				++j;
+		}
 		else
-			sc->lines[i][l] = ft_atoi(&aux[j]);
-		l++;
-		free(aux);
-		j += k;
-		k = 0;
-		if (raw[i][j] != '\0')
-			++j;
+		{
+			while (ft_isdigit(raw[i][j + k]))
+				++k;
+			aux = ft_strdup(raw[i]);
+			aux[j + k] = '\0';
+			if (j != 0 && aux[j - 1] == '-')
+				sc->lines[i][l] = ft_atoi(&aux[j - 1]);
+			else
+				sc->lines[i][l] = ft_atoi(&aux[j]);
+			l++;
+			free(aux);
+			j += k;
+			k = 0;
+			if (raw[i][j] != '\0')
+				++j;
+		}
 	}
 }
 
