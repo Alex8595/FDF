@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:29:29 by ahernand          #+#    #+#             */
-/*   Updated: 2022/10/05 15:40:13 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/10/10 16:36:49 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_exec(t_dt *sc)
 	sc->height = ft_calculate_height(sc);
 
 	sc->mlx = mlx_init();
-	sc->win = mlx_new_window(sc->mlx, sc->width, sc->height, "kus (inmidiatly) plsss >:(");
+	sc->win = mlx_new_window(sc->mlx, sc->width, sc->height, "KUS, it'll be better than this");
 
 	sc->img = mlx_new_image(sc->mlx, sc->width, sc->height);
 	sc->addr = mlx_get_data_addr(sc->img, &sc->bits_per_pixel, &sc->line_length, &sc->endian);

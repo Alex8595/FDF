@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:29:52 by ahernand          #+#    #+#             */
-/*   Updated: 2022/10/06 12:33:25 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/10/10 16:41:51 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,38 @@ void	ft_save_raw(t_dt *sc, char **raw, int i)
 	while (i < sc->size_y)
 	{
 		sc->lines[i] = malloc(sizeof(int) * (ft_n_dots(raw[i])));
+		printf("__ %d __\n", i);
 		ft_fill_lines(sc, raw, i);
 		i++;
 	}
 }
 
 
+
+
+
+int ft_hextoint(char *str)
+{
+	int	num;
+	int aux;
+	int i;
+
+	i = 0;
+	num = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] >= '0' && str[i] <= '9')
+			str[i] = (int)str[i] - '0';
+		else if (str[i] >= 'a' && str[i] <= 'f')
+			str[i] = (int)str[i] - 'a' + 10;
+		else if (str[i] >= 'A' && str[i] <= 'F')
+			str[i] = (int)str[i] - 'A' + 10;
+		num = num << 4;
+		num += str[i];
+		i++;
+	}
+	return (num);
+}
 
 void    ft_fill_lines(t_dt *sc, char **raw, int i)
 {
@@ -98,9 +124,12 @@ void    ft_fill_lines(t_dt *sc, char **raw, int i)
 	l = 0;
 	while (raw[i][j] != '\0')
 	{
+//		printf("__Start__ %d\n", i);
 		while (!ft_isdigit(raw[i][j]))
 			++j;
-		if (j != 0 && aux[j - 1] == ',')
+//		if (i == 0)
+//			printf("__ %d __ \n", j);
+		if (j != 0 && raw[i][j - 1] == ',')
 		{
 			j += 2;
 			while (ft_isdigit(raw[i][j + k]) || raw[i][j + k] == 'A' || raw[i][j + k] == 'B' ||
@@ -108,9 +137,9 @@ void    ft_fill_lines(t_dt *sc, char **raw, int i)
 				++k;
 			aux = ft_strdup(raw[i]);
 			aux[j + k] = '\0';
-			printf("%d\n", ft_atoi(&aux[j]));
-			if (raw[i][j] != '\0')
-				++j;
+			free(aux);
+			j += k - 1;
+			k = 0;
 		}
 		else
 		{
@@ -129,6 +158,7 @@ void    ft_fill_lines(t_dt *sc, char **raw, int i)
 			if (raw[i][j] != '\0')
 				++j;
 		}
+//		printf("__End__\n\n\n");
 	}
 }
 
