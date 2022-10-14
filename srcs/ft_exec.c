@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:29:29 by ahernand          #+#    #+#             */
-/*   Updated: 2022/10/10 16:36:49 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/10/14 11:48:42 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,25 @@ void	ft_exec(t_dt *sc)
 {
 	sc->width = 100 + (14  * (sc->size_x - 1)) + ((sc->size_y - 1) * 14);
 	sc->height = ft_calculate_height(sc);
+
+	/*
+    int x;
+    int y;
+
+    x = 0;
+    y = 0;
+    while (y < sc->size_y)
+    {
+        while (x < sc->size_x)
+        {
+            printf("%d \n", sc->lines[y][x]);
+            x++;
+        }
+        printf("\n");
+        x = 0;
+        ++y;
+    }
+	*/
 
 	sc->mlx = mlx_init();
 	sc->win = mlx_new_window(sc->mlx, sc->width, sc->height, "KUS, it'll be better than this");

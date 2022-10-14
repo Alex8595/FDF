@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:29:52 by ahernand          #+#    #+#             */
-/*   Updated: 2022/10/10 16:41:51 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/10/14 12:35:12 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,24 +67,43 @@ void	ft_fix_empty_line(t_dt *sc, char **raw)
 	}
 }
 
+
+
+int	ft_longest_str(t_dt *sc, char **raw)
+{
+	int	longest;
+	int	i;
+	
+	i = 0;
+	longest = 0;
+	while (i < sc->size_y)
+	{
+		if (ft_strlen(raw[i]) > ft_strlen(raw[longest]))
+			longest = i;
+		++i;
+	}
+	return (longest);
+}
+
 void	ft_save_raw(t_dt *sc, char **raw, int i)
 {
 	sc->size_y = i + 1;
 	ft_fix_empty_line(sc, raw);
-	sc->size_x = ft_n_dots(raw[0]);
+	sc->size_x = ft_n_dots(raw[ft_longest_str(sc, raw)]);
 	sc->lines = malloc(sizeof(int*) * sc->size_y);
 	if (!raw)
 		return ;
 	i = 0;
 	while (i < sc->size_y)
 	{
+		printf("_ %d _\n", ft_n_dots(raw[i]));
+		printf("Start \n");
 		sc->lines[i] = malloc(sizeof(int) * (ft_n_dots(raw[i])));
-		printf("__ %d __\n", i);
-		ft_fill_lines(sc, raw, i);
+		printf("End\n");
+		//ft_fill_lines(sc, raw, i);
 		i++;
 	}
 }
-
 
 
 
@@ -112,6 +131,15 @@ int ft_hextoint(char *str)
 	return (num);
 }
 
+int		ft_ishexa(int c)
+{
+	if ((c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F'))
+		return (1);
+	else
+		return (0);
+}
+
+
 void    ft_fill_lines(t_dt *sc, char **raw, int i)
 {
 	int	j;
@@ -124,12 +152,9 @@ void    ft_fill_lines(t_dt *sc, char **raw, int i)
 	l = 0;
 	while (raw[i][j] != '\0')
 	{
-//		printf("__Start__ %d\n", i);
-		while (!ft_isdigit(raw[i][j]))
+		while (raw[i][j] != '\0' && !ft_isdigit(raw[i][j]))
 			++j;
-//		if (i == 0)
-//			printf("__ %d __ \n", j);
-		if (j != 0 && raw[i][j - 1] == ',')
+		if (raw[i][j] != '\0' && j != 0 && raw[i][j - 1] == ',')
 		{
 			j += 2;
 			while (ft_isdigit(raw[i][j + k]) || raw[i][j + k] == 'A' || raw[i][j + k] == 'B' ||
@@ -138,12 +163,13 @@ void    ft_fill_lines(t_dt *sc, char **raw, int i)
 			aux = ft_strdup(raw[i]);
 			aux[j + k] = '\0';
 			free(aux);
-			j += k - 1;
+			j += k;
 			k = 0;
 		}
-		else
+		else if (raw[i][j] != '\0')
 		{
-			while (ft_isdigit(raw[i][j + k]))
+//			printf("_%d . %d . %c_\n", i, j, raw[i][j]);
+			while (raw[i][j] != '\0' && ft_isdigit(raw[i][j + k])) 
 				++k;
 			aux = ft_strdup(raw[i]);
 			aux[j + k] = '\0';
@@ -155,10 +181,7 @@ void    ft_fill_lines(t_dt *sc, char **raw, int i)
 			free(aux);
 			j += k;
 			k = 0;
-			if (raw[i][j] != '\0')
-				++j;
 		}
-//		printf("__End__\n\n\n");
 	}
 }
 
@@ -178,11 +201,13 @@ int	ft_n_dots(char *str)
 	n = 0;
 	while (str[i] != '\0')
 	{
-		if (ft_isdigit(str[i]))
+		if (ft_isdigit(str[i]) && ((i != 0 && str[i - 1] != ',' && str[i - 1] != 'x') || (i == 0)))
+		{
 			n++;
-		while (str[i] != '\0' && ft_isdigit(str[i]))
-			++i;
-		if (str[i] != '\0')
+			while (str[i] != '\0' && (ft_ishexa(str[i]) || str[i] == 'x' || str[i] == ','))
+				++i;
+		}
+		else if (str[i] != '\0')
 			++i;
 	}
 	return (n);
