@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 18:33:13 by ahernand          #+#    #+#             */
-/*   Updated: 2022/10/05 14:12:12 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/10/17 14:28:11 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ typedef struct		t_dt
 	int				lowest_y;
 
 
-	int				line_height;
-	int				line_width;
-	int				line_depth;
+	double			line_height;
+	double			line_width;
+	double 			line_depth;
 
 	int				angle;
 

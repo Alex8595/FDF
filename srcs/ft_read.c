@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:29:52 by ahernand          #+#    #+#             */
-/*   Updated: 2022/10/14 12:35:12 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/10/17 15:51:09 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,21 @@ int	ft_read(t_dt *sc, char *file)
 **
 */
 
+void	ft_lenght_lines(t_dt *sc)
+{
+	if (sc->size_x <= 137)
+	{
+		sc->line_height = 7;
+		sc->line_width = 14;
+		sc->line_depth = 20;
+	}
+	else
+	{
+		sc->line_height = 980 / sc->size_y;
+		sc->line_width = 1820 / ((sc->size_x - 1) + (sc->size_y - 1));
+		sc->line_depth = sc->line_width * 20 / 14;
+	}
+}
 
 void	ft_fix_empty_line(t_dt *sc, char **raw)
 {
@@ -90,17 +105,15 @@ void	ft_save_raw(t_dt *sc, char **raw, int i)
 	sc->size_y = i + 1;
 	ft_fix_empty_line(sc, raw);
 	sc->size_x = ft_n_dots(raw[ft_longest_str(sc, raw)]);
+	ft_lenght_lines(sc);
 	sc->lines = malloc(sizeof(int*) * sc->size_y);
 	if (!raw)
 		return ;
 	i = 0;
 	while (i < sc->size_y)
 	{
-		printf("_ %d _\n", ft_n_dots(raw[i]));
-		printf("Start \n");
 		sc->lines[i] = malloc(sizeof(int) * (ft_n_dots(raw[i])));
-		printf("End\n");
-		//ft_fill_lines(sc, raw, i);
+		ft_fill_lines(sc, raw, i);
 		i++;
 	}
 }
@@ -157,8 +170,7 @@ void    ft_fill_lines(t_dt *sc, char **raw, int i)
 		if (raw[i][j] != '\0' && j != 0 && raw[i][j - 1] == ',')
 		{
 			j += 2;
-			while (ft_isdigit(raw[i][j + k]) || raw[i][j + k] == 'A' || raw[i][j + k] == 'B' ||
-				raw[i][j + k] == 'C' || raw[i][j + k] == 'D' || raw[i][j + k] == 'E' || raw[i][j + k] == 'F')
+			while (raw[i][j + k] != '\0' && ft_ishexa(raw[i][j + k]))
 				++k;
 			aux = ft_strdup(raw[i]);
 			aux[j + k] = '\0';
@@ -168,7 +180,6 @@ void    ft_fill_lines(t_dt *sc, char **raw, int i)
 		}
 		else if (raw[i][j] != '\0')
 		{
-//			printf("_%d . %d . %c_\n", i, j, raw[i][j]);
 			while (raw[i][j] != '\0' && ft_isdigit(raw[i][j + k])) 
 				++k;
 			aux = ft_strdup(raw[i]);

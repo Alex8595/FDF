@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:29:29 by ahernand          #+#    #+#             */
-/*   Updated: 2022/10/14 11:48:42 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/10/17 15:38:18 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 void	ft_exec(t_dt *sc)
 {
-	sc->width = 100 + (14  * (sc->size_x - 1)) + ((sc->size_y - 1) * 14);
+	sc->width = 100 + (sc->line_width  * (sc->size_x - 1)) + ((sc->size_y - 1) * sc->line_width);
 	sc->height = ft_calculate_height(sc);
 
 	/*
@@ -45,7 +45,8 @@ void	ft_exec(t_dt *sc)
 	*/
 
 	sc->mlx = mlx_init();
-	sc->win = mlx_new_window(sc->mlx, sc->width, sc->height, "KUS, it'll be better than this");
+//	sc->win = mlx_new_window(sc->mlx, sc->width, sc->height, "KUS, it'll be better than this");
+	sc->win = mlx_new_window(sc->mlx, 1920, 1080, "KUS, it'll be better than this");
 
 	sc->img = mlx_new_image(sc->mlx, sc->width, sc->height);
 	sc->addr = mlx_get_data_addr(sc->img, &sc->bits_per_pixel, &sc->line_length, &sc->endian);
@@ -302,7 +303,7 @@ void	ft_paint_up(t_dt *sc)
 	
 	int x = 0;
 	int y = 0;
-	while (i < 250 + (7 * sc->size_y))
+	while (i < 250 + (sc->line_height * sc->size_y))
 	{
 		while (j < (sc->size_x * 14) - 4 + l)
 		{
@@ -317,7 +318,7 @@ void	ft_paint_up(t_dt *sc)
 		k = 0;
 		l += 14;
 		j = 10 + l;
-		i += 7;
+		i += sc->line_height;
 	}
 }
 
@@ -329,11 +330,11 @@ void	join_dots_up(t_dt *sc, double j, double i)
 	k = 0;
 	l = 0;
 //	dot(sc, j, i, 0xFFFFFF);
-	if (fabs((j + 14) - j) > fabs(i - (i - 7)))
+	if (fabs((j + 14) - j) > fabs(i - (i - sc->line_height)))
 	{
 		while (k < fabs((j + 14) - j))
 		{
-			l += fabs(i - (i - 7)) / fabs((j + 14) - j);
+			l += fabs(i - (i - sc->line_height)) / fabs((j + 14) - j);
 			dot(sc, j + k, i - l, 0xFFFFFF);
 			++k;
 		}
@@ -365,7 +366,7 @@ void	join_dots_up(t_dt *sc, double j, double i)
 
 
 //	printf("Prior: j: %d ,i: %f\n", j, i);
-//	printf("Next:  j: %d ,i: %f\n\n\n\n", j + 14, i - 7);
+//	printf("Next:  j: %d ,i: %f\n\n\n\n", j + 14, i - sc->line_height);
 
 
 
@@ -380,7 +381,7 @@ void	ft_paint_down(t_dt *sc)
 	double k = 0;
 	int l = 0;
 
-	while (i > 30 + (7 * (32 - sc->size_x)))
+	while (i > 30 + (sc->line_height * (32 - sc->size_x)))
 	{
 		while (j < (sc->size_y * 14) - 4 + l)
 		{
@@ -393,7 +394,7 @@ void	ft_paint_down(t_dt *sc)
 		k = 0;
 		l += 14;
 		j = 10 + l;
-		i -= 7;
+		i -= sc->line_height;
 	}
 }
 
@@ -404,11 +405,11 @@ void	join_dots_down(t_dt *sc, double j, double i)
 
 	k = 0;
 	l = 0;
-	if (fabs((j + 14) - j) > fabs(i - (i + 7)))
+	if (fabs((j + 14) - j) > fabs(i - (i + sc->line_height)))
 	{
 		while (k < fabs((j + 14) - j))
 		{
-			l += fabs(i - (i + 7)) / fabs((j + 14) - j);
+			l += fabs(i - (i + sc->line_height)) / fabs((j + 14) - j);
 			dot(sc, j + k, i + l, 0xFFFFFF);
 			++k;
 		}

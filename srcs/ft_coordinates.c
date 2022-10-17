@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:11:20 by ahernand          #+#    #+#             */
-/*   Updated: 2022/10/14 11:48:45 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/10/17 12:52:08 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	ft_coordinates(t_dt *sc)
 
 	x = 0;
 	y = 0;
+	/*
 	while (y < sc->size_y)
 	{
 		while (x < sc->size_x)
@@ -38,6 +39,7 @@ void	ft_coordinates(t_dt *sc)
 		x = 0;
 		++y;
 	}
+	*/
 	ft_allocate_ij(sc);
 	ft_fill_j(sc);
 	ft_fill_i(sc);
@@ -75,14 +77,14 @@ void	ft_fill_j(t_dt *sc)
 	{
 		while (j < sc->size_x)
 		{
-			sc->j[i][j] = sc->j[i][j - 1] + 14;
+			sc->j[i][j] = sc->j[i][j - 1] + sc->line_width;
 			++j;
 		}
 		++i;
 		if (i < sc->size_y)
 		{
 			j = 0;
-			margin += 14; 
+			margin += sc->line_width; 
 			sc->j[i][j] = margin;
 			j = 1;
 		}
@@ -126,14 +128,14 @@ void	ft_fill_i(t_dt *sc)
 	{
 		while (j < sc->size_x)
 		{
-			sc->i[i][j] = sc->i[i][j - 1] - 7;
+			sc->i[i][j] = sc->i[i][j - 1] - sc->line_height;
 			++j;
 		}
 		++i;
 		if (i < sc->size_y)
 		{
 			j = 0; //remove this one
-			margin += 7; 
+			margin += sc->line_height; 
 			sc->i[i][j] = margin;	//and place the 0 on the j
 			j = 1;
 		}
@@ -174,7 +176,7 @@ void	ft_fill_depth(t_dt *sc)
 	{
 		while (j < sc->size_x)
 		{
-			sc->i[i][j] = sc->i[i][j] - (sc->lines[i][j] * 20);
+			sc->i[i][j] = sc->i[i][j] - (sc->lines[i][j] * sc->line_depth);
 			++j;
 		}
 		j = 0;
