@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 15:39:32 by ahernand          #+#    #+#             */
-/*   Updated: 2022/10/17 13:48:42 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/10/18 12:17:55 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ void	ft_init_vars(t_dt *sc)
 	sc->lowest_y = 0;
 	sc->line_height = 7;
 	sc->line_width = 14;
-	sc->line_depth= 20;
+	sc->line_depth = 20;
+	sc->fullcreen = 0;
 }

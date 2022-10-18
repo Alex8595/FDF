@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 18:33:13 by ahernand          #+#    #+#             */
-/*   Updated: 2022/10/17 14:28:11 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/10/18 12:18:13 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ typedef struct		t_dt
 	/*
 	**
 	*/
+
+	int				fullcreen;
 
 	int				highest_y;
 	int				lowest_y;

@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:29:52 by ahernand          #+#    #+#             */
-/*   Updated: 2022/10/17 15:51:09 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/10/18 11:28:15 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,22 +55,6 @@ int	ft_read(t_dt *sc, char *file)
 **
 */
 
-void	ft_lenght_lines(t_dt *sc)
-{
-	if (sc->size_x <= 137)
-	{
-		sc->line_height = 7;
-		sc->line_width = 14;
-		sc->line_depth = 20;
-	}
-	else
-	{
-		sc->line_height = 980 / sc->size_y;
-		sc->line_width = 1820 / ((sc->size_x - 1) + (sc->size_y - 1));
-		sc->line_depth = sc->line_width * 20 / 14;
-	}
-}
-
 void	ft_fix_empty_line(t_dt *sc, char **raw)
 {
 	if (sc->size_y - 1 > 0 && raw[sc->size_y - 1][0] == '\0')
@@ -105,7 +89,6 @@ void	ft_save_raw(t_dt *sc, char **raw, int i)
 	sc->size_y = i + 1;
 	ft_fix_empty_line(sc, raw);
 	sc->size_x = ft_n_dots(raw[ft_longest_str(sc, raw)]);
-	ft_lenght_lines(sc);
 	sc->lines = malloc(sizeof(int*) * sc->size_y);
 	if (!raw)
 		return ;

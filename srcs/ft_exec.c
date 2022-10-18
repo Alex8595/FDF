@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:29:29 by ahernand          #+#    #+#             */
-/*   Updated: 2022/10/17 15:38:18 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/10/18 12:33:08 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,38 +20,43 @@
 **
 */
 
+
+void    ft_lenght_lines(t_dt *sc)
+{
+	if (((sc->size_x - 1) * 14) + ((sc->size_y - 1) * 14) + 100 <= 1920)
+	{
+		sc->line_height = 7;
+		sc->line_width = 14;
+		sc->line_depth = 20;
+	}
+    else
+	{
+		sc->fullcreen = 1;
+		//	select wheter the height is bigger than the width
+		sc->line_width = 1820 / ((sc->size_x - 1) + (sc->size_y - 1));
+		sc->line_height = sc->line_width / 2;
+		sc->line_depth = sc->line_width * 20 / 14;
+	}
+}
+
 void	ft_exec(t_dt *sc)
 {
+	ft_lenght_lines(sc);
 	sc->width = 100 + (sc->line_width  * (sc->size_x - 1)) + ((sc->size_y - 1) * sc->line_width);
 	sc->height = ft_calculate_height(sc);
+	ft_coordinates(sc);
 
-	/*
-    int x;
-    int y;
-
-    x = 0;
-    y = 0;
-    while (y < sc->size_y)
-    {
-        while (x < sc->size_x)
-        {
-            printf("%d \n", sc->lines[y][x]);
-            x++;
-        }
-        printf("\n");
-        x = 0;
-        ++y;
-    }
-	*/
 
 	sc->mlx = mlx_init();
-//	sc->win = mlx_new_window(sc->mlx, sc->width, sc->height, "KUS, it'll be better than this");
-	sc->win = mlx_new_window(sc->mlx, 1920, 1080, "KUS, it'll be better than this");
+	if (sc->fullcreen)
+		sc->win = mlx_new_window(sc->mlx, 1920, 1080, "KUS, it'll be better than this");
+	else
+		sc->win = mlx_new_window(sc->mlx, sc->width, sc->height, "KUS, it'll be better than this");
 
 	sc->img = mlx_new_image(sc->mlx, sc->width, sc->height);
 	sc->addr = mlx_get_data_addr(sc->img, &sc->bits_per_pixel, &sc->line_length, &sc->endian);
 
-	ft_coordinates(sc);
+
 	ft_paint_up(sc);
 	ft_paint_down(sc);
 	mlx_put_image_to_window(sc->mlx, sc->win, sc->img, 0, 0);
