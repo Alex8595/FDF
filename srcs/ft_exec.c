@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:29:29 by ahernand          #+#    #+#             */
-/*   Updated: 2022/10/18 12:33:08 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/10/19 18:31:34 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ void    ft_lenght_lines(t_dt *sc)
 	{
 		sc->fullcreen = 1;
 		//	select wheter the height is bigger than the width
-		sc->line_width = 1820 / ((sc->size_x - 1) + (sc->size_y - 1));
+		sc->line_width = (double)1820 / (double)((sc->size_x - 1) + ((sc->size_y - 1) / 2));
+		printf("Total lines %f, width %f\n", (double)((sc->size_x - 1) + ((sc->size_y - 1) / 2)), sc->line_width);
 		sc->line_height = sc->line_width / 2;
 		sc->line_depth = sc->line_width * 20 / 14;
 	}
@@ -66,7 +67,7 @@ int	ft_calculate_height(t_dt *sc)
 {
 	int i;
 	int j;
-	int	dif;
+	double dif;
 
 	i = 0;
 	j = 0;
@@ -84,7 +85,7 @@ int	ft_calculate_height(t_dt *sc)
 		j = 0;
 		++i;
 	}
-	return (sc->highest_y + abs(sc->lowest_y) + 100);
+	return (sc->highest_y + fabs(sc->lowest_y) + 100);
 }
 
 
@@ -113,7 +114,7 @@ void	ft_paint_down(t_dt *sc)
 
 void	join_dots_down_hub(t_dt *sc, int k, int l)
 {
-	if (abs(sc->i[k + 1][l] - sc->i[k][l]) > abs(sc->j[k + 1][l] - sc->j[k][l]))
+	if (fabs(sc->i[k + 1][l] - sc->i[k][l]) > fabs(sc->j[k + 1][l] - sc->j[k][l]))
 		join_dots_down_more_y(sc, k, l);
 	else
 		join_dots_down_more_x(sc, k, l);
@@ -121,14 +122,14 @@ void	join_dots_down_hub(t_dt *sc, int k, int l)
 
 void	join_dots_down_more_y(t_dt *sc, int k, int l)
 {
-	int		a;
+	double	a;
 	double	b;
 
 	a = 0;
 	b = 0;
-	while (abs((sc->i[k][l] +  a) - sc->i[k + 1][l]) > 0)
+	while ((sc->i[k][l] +  a) - sc->i[k + 1][l] < 0)
 	{
-		b += fabs((double)sc->j[k + 1][l] - (sc->j[k][l])) / (sc->i[k + 1][l] - sc->i[k][l]);
+		b += fabs(sc->j[k + 1][l] - (sc->j[k][l])) / (sc->i[k + 1][l] - sc->i[k][l]);
 		if (sc->i[k + 1][l] < sc->i[k][l])
 		{
 			dot(sc, sc->j[k][l] - b, sc->i[k][l] + a, 0xFFFFFF);
@@ -152,7 +153,7 @@ void	join_dots_down_more_x(t_dt *sc, int k, int l)
 	while (a + sc->j[k][l] < sc->j[k + 1][l])
 	{
 //		b += fabs(((float)sc->i[k + 1][l] - sc->i[k][l])) / abs(sc->j[k + 1][l] - sc->j[k][l] + 1);
-		b += fabs(((float)sc->i[k + 1][l] - sc->i[k][l])) / abs(sc->j[k + 1][l] - sc->j[k][l]);
+		b += fabs(sc->i[k + 1][l] - sc->i[k][l]) / fabs(sc->j[k + 1][l] - sc->j[k][l]);
 		if (sc->i[k + 1][l] < sc->i[k][l])
 			dot(sc, sc->j[k][l] + a, sc->i[k][l] - b + 1, 0xFFFFFF);
 		else
@@ -220,7 +221,7 @@ void	ft_paint_up(t_dt *sc)
 
 void	join_dots_up_hub(t_dt *sc, int k, int l)
 {
-	if (abs(sc->i[k][l + 1] - sc->i[k][l]) > abs(sc->j[k][l + 1] - sc->j[k][l]))
+	if (fabs(sc->i[k][l + 1] - sc->i[k][l]) > fabs(sc->j[k][l + 1] - sc->j[k][l]))
 		join_dots_up_more_y(sc, k, l);
 	else
 		join_dots_up_more_x(sc, k, l);
@@ -237,7 +238,7 @@ void	join_dots_up_more_x(t_dt *sc, int k, int l)
 
 	while (a + sc->j[k][l] < sc->j[k][l + 1])
 	{
-		b += abs(sc->i[k][l + 1] - sc->i[k][l]) / fabs((float)sc->j[k][l + 1] - sc->j[k][l]);
+		b += fabs(sc->i[k][l + 1] - sc->i[k][l]) / fabs(sc->j[k][l + 1] - sc->j[k][l]);
 		if (sc->i[k][l + 1] < sc->i[k][l])
 			dot(sc, sc->j[k][l] + a, sc->i[k][l] - b, 0xFFFFFF);
 		else
@@ -253,10 +254,10 @@ void	join_dots_up_more_y(t_dt *sc, int k, int l)
 
 	a = 0;
 	b = 0;
-	while (a < abs(sc->i[k][l] - sc->i[k][l + 1]))
+	while (a < fabs(sc->i[k][l] - sc->i[k][l + 1]))
 	{
 //		b += fabs(((float)sc->j[k][l + 1] - 1) - sc->j[k][l]) / abs(sc->i[k][l + 1] - sc->i[k][l]);
-		b += fabs(((float)sc->j[k][l + 1]) - sc->j[k][l]) / abs(sc->i[k][l + 1] - sc->i[k][l]);
+		b += fabs((sc->j[k][l + 1]) - sc->j[k][l]) / fabs(sc->i[k][l + 1] - sc->i[k][l]);
 		if (sc->i[k][l + 1] < sc->i[k][l])
 			dot(sc, sc->j[k][l] + b, sc->i[k][l] - a, 0xFFFFFF);
 		else
@@ -264,168 +265,6 @@ void	join_dots_up_more_y(t_dt *sc, int k, int l)
 		++a;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-//		OLD PAINT AND JOIN UP
-void	ft_paint_up(t_dt *sc)
-{
-	int i = 250;
-	int j = 10;
-	double k = 0;
-	int l = 0;
-
-	
-	int x = 0;
-	int y = 0;
-	while (i < 250 + (sc->line_height * sc->size_y))
-	{
-		while (j < (sc->size_x * 14) - 4 + l)
-		{
-			if ((j - 10) % 14 == 0)
-			{
-				join_dots_up(sc, (double)j, i - k);
-				printf("_%f_\n", i - k);
-			}
-			k += 0.5;
-			j++;
-		}
-		k = 0;
-		l += 14;
-		j = 10 + l;
-		i += sc->line_height;
-	}
-}
-
-void	join_dots_up(t_dt *sc, double j, double i)
-{
-	int		k;
-	double	l;
-
-	k = 0;
-	l = 0;
-//	dot(sc, j, i, 0xFFFFFF);
-	if (fabs((j + 14) - j) > fabs(i - (i - sc->line_height)))
-	{
-		while (k < fabs((j + 14) - j))
-		{
-			l += fabs(i - (i - sc->line_height)) / fabs((j + 14) - j);
-			dot(sc, j + k, i - l, 0xFFFFFF);
-			++k;
-		}
-	}
-	//else
-	//	Do the reverse, change the x/y to y/x 
-}
-
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//	printf("Prior: j: %d ,i: %f\n", j, i);
-//	printf("Next:  j: %d ,i: %f\n\n\n\n", j + 14, i - sc->line_height);
-
-
-
-
-
-/*
-OLD PAINT DOWN
-void	ft_paint_down(t_dt *sc)
-{
-	int i = 250;
-	int j = 10;
-	double k = 0;
-	int l = 0;
-
-	while (i > 30 + (sc->line_height * (32 - sc->size_x)))
-	{
-		while (j < (sc->size_y * 14) - 4 + l)
-		{
-			if ((j - 10) % 14 == 0)
-				join_dots_down(sc, (double)j, i + k);
-			//	dot(sc, j, i + k, 0xFFFFFF);
-			k += 0.5;
-			j++;
-		}
-		k = 0;
-		l += 14;
-		j = 10 + l;
-		i -= sc->line_height;
-	}
-}
-
-void	join_dots_down(t_dt *sc, double j, double i)
-{
-	int		k;
-	double	l;
-
-	k = 0;
-	l = 0;
-	if (fabs((j + 14) - j) > fabs(i - (i + sc->line_height)))
-	{
-		while (k < fabs((j + 14) - j))
-		{
-			l += fabs(i - (i + sc->line_height)) / fabs((j + 14) - j);
-			dot(sc, j + k, i + l, 0xFFFFFF);
-			++k;
-		}
-	}
-	//else
-	//	Do the reverse, change the x/y to y/x 
-}
-
-*/
-
-
 
 
 void	dot(t_dt *sc, int j, int i, int color)

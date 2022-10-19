@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:11:20 by ahernand          #+#    #+#             */
-/*   Updated: 2022/10/17 12:52:08 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/10/19 17:35:26 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_coordinates(t_dt *sc)
 			printf("__ %d __\n", sc->lines[y][x]);
 			x++;
 		}
-		printf("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+		printf("||||||||||||||||||||||||||||\n");
 		x = 0;
 		++y;
 	}
@@ -52,12 +52,12 @@ void	ft_allocate_ij(t_dt *sc)
 	int	i;
 
 	i = 0;
-	sc->i = malloc(sizeof(int *) * (sc->size_y));
-	sc->j = malloc(sizeof(int *) * (sc->size_y));
+	sc->i = malloc(sizeof(double*) * (sc->size_y));
+	sc->j = malloc(sizeof(double *) * (sc->size_y));
 	while (i < sc->size_y)
 	{
-		sc->i[i] = malloc(sizeof(int) * sc->size_x);
-		sc->j[i] = malloc(sizeof(int) * sc->size_x);
+		sc->i[i] = malloc(sizeof(double) * sc->size_x);
+		sc->j[i] = malloc(sizeof(double) * sc->size_x);
 		++i;
 	}
 }
@@ -79,6 +79,8 @@ void	ft_fill_j(t_dt *sc)
 		{
 			sc->j[i][j] = sc->j[i][j - 1] + sc->line_width;
 			++j;
+//			if (i == 1)
+//					printf("%d : %f\n", j, sc->j[i][j - 1] + sc->line_width);
 		}
 		++i;
 		if (i < sc->size_y)
@@ -118,11 +120,11 @@ void	ft_fill_i(t_dt *sc)
 {
 	int i;
 	int j;
-	int margin;
+	double margin;
 
 	i = 0;
 	j = 1;
-	margin = 50 + sc->highest_y;
+	margin = sc->highest_y + 50;
 	sc->i[0][0] = margin;
 	while (i < sc->size_y)
 	{
