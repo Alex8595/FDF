@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:29:29 by ahernand          #+#    #+#             */
-/*   Updated: 2022/10/19 18:31:34 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/10/20 12:28:38 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void    ft_lenght_lines(t_dt *sc)
 	{
 		sc->fullcreen = 1;
 		//	select wheter the height is bigger than the width
-		sc->line_width = (double)1820 / (double)((sc->size_x - 1) + ((sc->size_y - 1) / 2));
-		printf("Total lines %f, width %f\n", (double)((sc->size_x - 1) + ((sc->size_y - 1) / 2)), sc->line_width);
-		sc->line_height = sc->line_width / 2;
+		sc->line_width = (double)1820 / (double)((sc->size_x - 1) + (double)(sc->size_y - 1));
+		printf("Number of cuts .%f.\nWidth          .%f.\n", (double)((sc->size_x - 1) + ((double)(sc->size_y - 1) / 1)), sc->line_width);
+		sc->line_height = (double)sc->line_width / (double)2;
 		sc->line_depth = sc->line_width * 20 / 14;
 	}
 }
