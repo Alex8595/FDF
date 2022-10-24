@@ -6,14 +6,14 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:29:52 by ahernand          #+#    #+#             */
-/*   Updated: 2022/10/18 11:28:15 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/10/24 16:34:19 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
 
 /*
-**		ft_read
+sc->lines[sc->highest_y_i][sc->highest_y_j]**		ft_read
 **
 **		This function will save the information given though a file
 **

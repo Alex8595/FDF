@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:11:20 by ahernand          #+#    #+#             */
-/*   Updated: 2022/10/20 12:28:45 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/10/24 13:03:55 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,9 @@ void	ft_fill_j(t_dt *sc)
 	i = 0;
 	j = 1;
 	margin = 50;
+	if (sc->fullcreen_vertical)
+		margin = (1920 / 2) - (sc->size_y * sc->line_width);
+	
 	sc->j[0][0] = margin;
 	while (i < sc->size_y)
 	{
