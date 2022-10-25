@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:29:29 by ahernand          #+#    #+#             */
-/*   Updated: 2022/10/24 16:35:39 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/10/25 12:34:20 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,20 @@ void    ft_lenght_lines(t_dt *sc)
 		sc->fullcreen = 1;
 		sc->fullcreen_vertical = 1;
 
-		sc->line_depth = 980 / (0.7 * ((((sc->size_y - 1) - sc->highest_y_i) + sc->highest_y_j) + sc->lines[sc->highest_y_i][sc->highest_y_j]));
+//		sc->line_depth = 980 / (0.7 * ((((sc->size_y - 1) - (sc->highest_y_i)) + sc->highest_y_j) + sc->lines[sc->highest_y_i][sc->highest_y_j]));
+		sc->line_depth = 980 / (((double)0.7 * (((sc->size_y - 1) - (sc->highest_y_i)) + sc->highest_y_j)) + sc->lines[sc->highest_y_i][sc->highest_y_j]);
 //		printf("Deepth: %f\n", sc->line_depth);
-		sc->line_depth = 16;
 
 		sc->line_width = sc->line_depth * (double) 0.7;
 		sc->line_height = (double)sc->line_width / (double) 2;
 
+		printf("Highest y_i %d, Size_y %d\n", sc->highest_y_i, sc->size_y - 1);
+		printf("Highest y_j %d, depth %d\n", sc->highest_y_j, sc->lines[sc->highest_y_i][sc->highest_y_j]);
+
+		printf("Deepth: %f\n", sc->line_depth);
+		printf("height: %f\n", sc->line_height);
+
+//		printf("Bug: %f\n", sc->size_y * ( (sc->size_y - 1) - sc->highest_y_i) );
 //		printf("Bug: %f\n", sc->line_height * ( (sc->size_y - 1) - sc->highest_y_i) );
 //		printf("Bug: %f\n", sc->line_height * (sc->highest_y_j));
 //		printf("Bug: %f\n", sc->lines[sc->highest_y_i][sc->highest_y_j] * (sc->line_depth));
@@ -74,6 +81,7 @@ void	ft_exec(t_dt *sc)
 		sc->win = mlx_new_window(sc->mlx, 1920, 1080, "KUS, it'll be better than this");
 		sc->img = mlx_new_image(sc->mlx, 1920, 1080);
 		sc->width = 1920;
+		sc->height = 1080;
 	}
 	else
 	{
@@ -85,7 +93,6 @@ void	ft_exec(t_dt *sc)
 
 	ft_paint_up(sc);
 	ft_paint_down(sc);
-	printf("AaaaaA\n");
 	mlx_put_image_to_window(sc->mlx, sc->win, sc->img, 0, 0);
 }
 
