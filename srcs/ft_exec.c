@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:29:29 by ahernand          #+#    #+#             */
-/*   Updated: 2022/10/25 12:34:20 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/10/28 11:58:34 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,31 +37,81 @@ void    ft_lenght_lines(t_dt *sc)
 		//	select wheter the height is bigger than the width
 		sc->line_width = (double) 1820 / (double)((sc->size_x - 1) + (double)(sc->size_y - 1));
 		printf("Number of cuts .%f.\nWidth          .%f.\n", (double)((sc->size_x - 1) + ((double)(sc->size_y - 1) / 1)), sc->line_width);
-		sc->line_height = (double)sc->line_width / (double)2;
+		sc->line_height = (double)sc->line_width / (double) 2;
 		sc->line_depth = sc->line_width * 20 / 14;
 	}
 	else
 	{
-		sc->fullcreen = 1;
-		sc->fullcreen_vertical = 1;
+		/*
+		printf("%f, %f\n", sc->lowest_y, sc->highest_y);
+		if (ft_no_negative())
+		{
+			printf("You are disgusting\n");
+			sc->line_depth = 980 / (((double)((double) 7 / 20) * (((sc->size_y - 1) - (sc->highest_y_i)) + sc->highest_y_j)) + sc->lines[sc->highest_y_i][sc->highest_y_j]);
 
-//		sc->line_depth = 980 / (0.7 * ((((sc->size_y - 1) - (sc->highest_y_i)) + sc->highest_y_j) + sc->lines[sc->highest_y_i][sc->highest_y_j]));
-		sc->line_depth = 980 / (((double)0.7 * (((sc->size_y - 1) - (sc->highest_y_i)) + sc->highest_y_j)) + sc->lines[sc->highest_y_i][sc->highest_y_j]);
-//		printf("Deepth: %f\n", sc->line_depth);
+			sc->line_width = sc->line_depth * (double) 0.7;
+			sc->line_height = (double)sc->line_width / (double) 2;
 
-		sc->line_width = sc->line_depth * (double) 0.7;
-		sc->line_height = (double)sc->line_width / (double) 2;
+			printf("Highest y_i %d, Size_y %d\n", sc->highest_y_i, sc->size_y - 1);
+			printf("Highest y_j %d, depth %d\n", sc->highest_y_j, sc->lines[sc->highest_y_i][sc->highest_y_j]);
 
-		printf("Highest y_i %d, Size_y %d\n", sc->highest_y_i, sc->size_y - 1);
-		printf("Highest y_j %d, depth %d\n", sc->highest_y_j, sc->lines[sc->highest_y_i][sc->highest_y_j]);
+			printf("Deepth: %f\n", sc->line_depth);
+			printf("height: %f\n", sc->line_height);
+		}
+		else
+		{
+			printf("You are a piece of shit\n");
+			sc->line_depth = 980 / (((double)((double) 7 / 20) * (((sc->size_y - 1) - (sc->lowest_y_i)) + sc->lowest_y_j)) + abs(sc->lines[sc->lowest_y_i][sc->lowest_y_j]));
 
-		printf("Deepth: %f\n", sc->line_depth);
-		printf("height: %f\n", sc->line_height);
+			sc->line_width = sc->line_depth * (double) 0.7;
+			sc->line_height = (double)sc->line_width / (double) 2;
 
-//		printf("Bug: %f\n", sc->size_y * ( (sc->size_y - 1) - sc->highest_y_i) );
-//		printf("Bug: %f\n", sc->line_height * ( (sc->size_y - 1) - sc->highest_y_i) );
-//		printf("Bug: %f\n", sc->line_height * (sc->highest_y_j));
-//		printf("Bug: %f\n", sc->lines[sc->highest_y_i][sc->highest_y_j] * (sc->line_depth));
+			printf("lowest y_i %d, Size_y %d\n", sc->lowest_y_i, sc->size_y - 1);
+			printf("Highest y_j %d, depth %d\n", sc->lowest_y_j, sc->lines[sc->lowest_y_i][sc->lowest_y_j]);
+
+			printf("Deepth: %f\n", sc->line_depth);
+			printf("height: %f\n", sc->line_height);
+		}
+*/
+
+			sc->fullcreen = 1;
+			sc->fullcreen_vertical = 1;
+
+			sc->line_depth = 980 / ((((double)((double) 7 / 20) * (((sc->size_y - 1) - (sc->highest_y_i)) + sc->highest_y_j)) + sc->lines[sc->highest_y_i][sc->highest_y_j])
+				+ abs(sc->lines[sc->lowest_y_i][sc->lowest_y_j]));
+
+			sc->line_width = sc->line_depth * (double) 0.7;
+			sc->line_height = (double)sc->line_width / (double) 2;
+
+			printf("Highest y_i %d, Size_y %d\n", sc->highest_y_i, sc->size_y - 1);
+			printf("Highest y_j %d, depth %d\n", sc->highest_y_j, sc->lines[sc->highest_y_i][sc->highest_y_j]);
+
+			printf("Deepth: %f\n", sc->line_depth);
+			printf("height: %f\n", sc->line_height);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	}
@@ -118,7 +168,11 @@ int	ft_calculate_height(t_dt *sc)
 				sc->highest_y_j = j;
 			}
 			if (dif < sc->lowest_y)
+			{
 				sc->lowest_y= dif;
+				sc->lowest_y_i = i;
+				sc->lowest_y_j = j;
+			}
 			++j;
 		}
 		j = 0;
