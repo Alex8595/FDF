@@ -6,14 +6,14 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:29:52 by ahernand          #+#    #+#             */
-/*   Updated: 2022/10/24 16:34:19 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/11/01 15:38:28 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
 
 /*
-sc->lines[sc->highest_y_i][sc->highest_y_j]**		ft_read
+**		ft_read
 **
 **		This function will save the information given though a file
 **
@@ -90,6 +90,7 @@ void	ft_save_raw(t_dt *sc, char **raw, int i)
 	ft_fix_empty_line(sc, raw);
 	sc->size_x = ft_n_dots(raw[ft_longest_str(sc, raw)]);
 	sc->lines = malloc(sizeof(int*) * sc->size_y);
+	ft_color_alloc(sc, raw);
 	if (!raw)
 		return ;
 	i = 0;
@@ -100,6 +101,21 @@ void	ft_save_raw(t_dt *sc, char **raw, int i)
 		i++;
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -157,6 +173,11 @@ void    ft_fill_lines(t_dt *sc, char **raw, int i)
 				++k;
 			aux = ft_strdup(raw[i]);
 			aux[j + k] = '\0';
+			sc->B[i][l - 1] = ft_hextoint(&aux[j + 4]);
+			aux[j + k - 2] = '\0';
+			sc->G[i][l - 1] = ft_hextoint(&aux[j + 2]);
+			aux[j + k - 4] = '\0';
+			sc->R[i][l - 1] = ft_hextoint(&aux[j]);
 			free(aux);
 			j += k;
 			k = 0;
@@ -179,12 +200,27 @@ void    ft_fill_lines(t_dt *sc, char **raw, int i)
 	}
 }
 
-/*
-**
-**
-**
-**
-*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 int	ft_n_dots(char *str)
 {

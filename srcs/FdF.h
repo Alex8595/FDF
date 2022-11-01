@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 18:33:13 by ahernand          #+#    #+#             */
-/*   Updated: 2022/10/26 12:33:51 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/11/01 14:09:43 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,13 @@ typedef struct		t_dt
 
 	double			**i;
 	double			**j;
+
+	//				Colors
+	
+	int				**R;
+	int				**G;
+	int				**B;
+
 }					t_dt;
 
 /*
@@ -80,7 +87,6 @@ typedef struct		t_dt
 void				my_mlx_pixel_put(t_dt *sc, int x, int y, int color);
 int					ft_close(int keycode, t_dt *vars);
 
-void				ft_exec(t_dt *sc);
 
 
 int					ft_error(int code);
@@ -113,10 +119,26 @@ void				ft_fill_lines(t_dt *sc, char **raw, int i);
 
 
 /*
+**
+*/
+
+void				ft_color_alloc(t_dt *sc, char **raw);
+void				array_int_init_to_0(int *arr, int size);
+
+
+
+
+/*
 **					ft_exec
 */
 
+
+void				ft_exec(t_dt *sc);
+void				ft_lenght_lines(t_dt *sc);
 int					ft_calculate_height(t_dt *sc);
+
+
+
 void    			ft_paint_up(t_dt *sc);
 void    			ft_paint_down(t_dt *sc);
 void    			dot(t_dt *sc, int j, int i,  int color);

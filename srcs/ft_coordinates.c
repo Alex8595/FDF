@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:11:20 by ahernand          #+#    #+#             */
-/*   Updated: 2022/10/28 11:36:16 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/11/01 13:05:14 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,6 @@
 
 void	ft_coordinates(t_dt *sc)
 {
-	int x;
-	int	y;
-
-	x = 0;
-	y = 0;
-	/*
-	while (y < sc->size_y)
-	{
-		while (x < sc->size_x)
-		{
-			printf("__ %d __\n", sc->lines[y][x]);
-			x++;
-		}
-		printf("||||||||||||||||||||||||||||\n");
-		x = 0;
-		++y;
-	}
-	*/
 	ft_allocate_ij(sc);
 	ft_fill_j(sc);
 	ft_fill_i(sc);

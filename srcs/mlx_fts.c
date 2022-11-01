@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 18:43:01 by ahernand          #+#    #+#             */
-/*   Updated: 2022/10/25 11:01:04 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/11/01 12:01:15 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	ft_clean_dt(t_dt *vars)
 	{
 		free(vars->lines[i]);
 		++i;
-	}	
+	}
 	free(vars->lines);
 	return (1);
 }
