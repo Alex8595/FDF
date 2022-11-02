@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:29:52 by ahernand          #+#    #+#             */
-/*   Updated: 2022/11/01 15:38:28 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/11/02 14:23:54 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_read(t_dt *sc, char *file)
 	if (fd < 0)
 	{
 		free(raw);
-		return (ft_error(3));
+		exit(ft_error(3));
 	}
 	while (i < 3000 && get_next_line(fd, &raw[i]))
 		++i;
@@ -172,12 +172,30 @@ void    ft_fill_lines(t_dt *sc, char **raw, int i)
 			while (raw[i][j + k] != '\0' && ft_ishexa(raw[i][j + k]))
 				++k;
 			aux = ft_strdup(raw[i]);
-			aux[j + k] = '\0';
-			sc->B[i][l - 1] = ft_hextoint(&aux[j + 4]);
-			aux[j + k - 2] = '\0';
-			sc->G[i][l - 1] = ft_hextoint(&aux[j + 2]);
-			aux[j + k - 4] = '\0';
-			sc->R[i][l - 1] = ft_hextoint(&aux[j]);
+			if (k == 6)
+			{
+				aux[j + k] = '\0';
+				sc->B[i][l - 1] = ft_hextoint(&aux[j + 4]);
+				aux[j + k - 2] = '\0';
+				sc->G[i][l - 1] = ft_hextoint(&aux[j + 2]);
+				aux[j + k - 4] = '\0';
+				sc->R[i][l - 1] = ft_hextoint(&aux[j]);
+			}
+			if (k == 4)
+			{
+				sc->R[i][l - 1] = 0;
+				aux[j + k - 2] = '\0';
+				sc->G[i][l - 1] = ft_hextoint(&aux[j]);
+				aux[j + k] = '\0';
+				sc->B[i][l - 1] = ft_hextoint(&aux[j + 2]);
+			}
+			if (k == 2)
+			{
+				sc->R[i][l - 1] = 0;
+				sc->G[i][l - 1] = 0;
+				aux[j + k] = '\0';
+				sc->B[i][l - 1] = ft_hextoint(&aux[j]);
+			}
 			free(aux);
 			j += k;
 			k = 0;

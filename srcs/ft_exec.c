@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:29:29 by ahernand          #+#    #+#             */
-/*   Updated: 2022/11/01 16:48:45 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/11/02 14:21:39 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,12 +184,25 @@ void	join_dots_down_more_y(t_dt *sc, int k, int l)
 	{
 		b += fabs(sc->j[k + 1][l] - (sc->j[k][l])) / (sc->i[k + 1][l] - sc->i[k][l]);
 		if (sc->i[k + 1][l] < sc->i[k][l])
-			dot(sc, sc->j[k][l] - b, sc->i[k][l] - a, 0xFFFFFF);
+			dot(sc, sc->j[k][l] - b, sc->i[k][l] - a,
+				(((		(int)(sc->R[k][l] + (a * ((sc->R[k + 1][l] - sc->R[k][l]) / fabs(sc->i[k][l] - sc->i[k + 1][l]))))			<< 8) +
+						(int)(sc->G[k][l] + (a * ((sc->G[k + 1][l] - sc->G[k][l]) / fabs(sc->i[k][l] - sc->i[k + 1][l])))))			<< 8) +
+						(int)(sc->B[k][l] + (a * ((sc->B[k + 1][l] - sc->B[k][l]) / fabs(sc->i[k][l] - sc->i[k + 1][l]))))				);
 		else
-			dot(sc, sc->j[k][l] + b, sc->i[k][l] + a, 0xFFFFFF);
+			dot(sc, sc->j[k][l] + b, sc->i[k][l] + a,
+				(((		(int)(sc->R[k][l] + (a * ((sc->R[k + 1][l] - sc->R[k][l]) / fabs(sc->i[k][l] - sc->i[k + 1][l]))))			<< 8) +
+						(int)(sc->G[k][l] + (a * ((sc->G[k + 1][l] - sc->G[k][l]) / fabs(sc->i[k][l] - sc->i[k + 1][l])))))			<< 8) +
+						(int)(sc->B[k][l] + (a * ((sc->B[k + 1][l] - sc->B[k][l]) / fabs(sc->i[k][l] - sc->i[k + 1][l]))))				);
 		++a;
 	}
 }
+
+
+
+
+
+
+
 
 void	join_dots_down_more_x(t_dt *sc, int k, int l)
 {
@@ -202,9 +215,15 @@ void	join_dots_down_more_x(t_dt *sc, int k, int l)
 	{
 		b += fabs(sc->i[k + 1][l] - sc->i[k][l]) / fabs(sc->j[k + 1][l] - sc->j[k][l]);
 		if (sc->i[k + 1][l] < sc->i[k][l])
-			dot(sc, sc->j[k][l] + a, sc->i[k][l] - b + 1, 0xFFFFFF);
+			dot(sc, sc->j[k][l] + a, sc->i[k][l] - b + 1 ,
+				(((		(int)(sc->R[k][l] + (a * ((sc->R[k + 1][l] - sc->R[k][l]) / fabs(sc->j[k][l] - sc->j[k + 1][l]))))			<< 8) +
+						(int)(sc->G[k][l] + (a * ((sc->G[k + 1][l] - sc->G[k][l]) / fabs(sc->j[k][l] - sc->j[k + 1][l])))))			<< 8) +
+						(int)(sc->B[k][l] + (a * ((sc->B[k + 1][l] - sc->B[k][l]) / fabs(sc->j[k][l] - sc->j[k + 1][l]))))				);
 		else
-			dot(sc, sc->j[k][l] + a, sc->i[k][l] + b - 1, 0xFFFFFF);
+			dot(sc, sc->j[k][l] + a, sc->i[k][l] + b - 1,
+				(((		(int)(sc->R[k][l] + (a * ((sc->R[k + 1][l] - sc->R[k][l]) / fabs(sc->j[k][l] - sc->j[k + 1][l]))))			<< 8) +
+						(int)(sc->G[k][l] + (a * ((sc->G[k + 1][l] - sc->G[k][l]) / fabs(sc->j[k][l] - sc->j[k + 1][l])))))			<< 8) +
+						(int)(sc->B[k][l] + (a * ((sc->B[k + 1][l] - sc->B[k][l]) / fabs(sc->j[k][l] - sc->j[k + 1][l]))))				);
 		++a;
 	}
 }
@@ -293,52 +312,40 @@ void	join_dots_up_more_x(t_dt *sc, int k, int l)
 	b = 0;
 
 
-	if (k == 0)
-		printf("__ R: %d, G: %d, B: %d __\n", sc->R[k][l] - sc->R[k][l + 1], sc->G[k][l] - sc->G[k][l + 1], sc->B[k][l] - sc->B[k][l + 1]);
+//	if (k == 0)
+//		printf("__ R: %d, G: %d, B: %d __\n", sc->R[k][l] - sc->R[k][l + 1], sc->G[k][l] - sc->G[k][l + 1], sc->B[k][l] - sc->B[k][l + 1]);
 
 
 
 	while (a + sc->j[k][l] < sc->j[k][l + 1])
 	{
 		b += fabs(sc->i[k][l + 1] - sc->i[k][l]) / fabs(sc->j[k][l + 1] - sc->j[k][l]);
-	//	printf("__%d, %d__ color: %d\n", k, l, (((sc->R[k][l] << 8) + sc->G[k][l]) << 8) + sc->B[k][l]);
+//		printf("__%d, %d__ color: %d\n", k, l, (((sc->R[k][l] << 8) + sc->G[k][l]) << 8) + sc->B[k][l]);
 
+
+//		printf("%d %d %d \n", sc->R[k][l], sc->G[k][l], sc->B[k][l]);
+
+//		if (k == 0)
+//			printf("___[%d] [%d] . RGB %f %f %f ___\n", k, l,
+//					(sc->R[k][l] + (a * ((sc->R[k][l + 1] - sc->R[k][l]) / sc->line_width))),
+//					(sc->G[k][l] + (a * ((sc->G[k][l + 1] - sc->G[k][l]) / sc->line_width))),
+//					(sc->B[k][l] + (a * ((sc->B[k][l + 1] - sc->B[k][l]) / sc->line_width))));
 
 		if (sc->i[k][l + 1] < sc->i[k][l])
+		{
 			dot(sc, sc->j[k][l] + a, sc->i[k][l] - b,
-	(((((int)(sc->R[k][l] + ((sc->R[k][l] - sc->R[k][l + 1]) / 2)) << 8) + (int)(sc->G[k][l] + (( sc->G[k][l] - sc->G[k][l + 1] ) / b))	<< 8) + (sc->B[k][l] + (( sc->B[k][l] - sc->B[k][l + 1] ) / b)))));
+				(((		(int)(sc->R[k][l] + (a * ((sc->R[k][l + 1] - sc->R[k][l]) / fabs(sc->j[k][l] - sc->j[k][l + 1]))))			<< 8) +
+						(int)(sc->G[k][l] + (a * ((sc->G[k][l + 1] - sc->G[k][l]) / fabs(sc->j[k][l] - sc->j[k][l + 1])))))			<< 8) +
+						(int)(sc->B[k][l] + (a * ((sc->B[k][l + 1] - sc->B[k][l]) / fabs(sc->j[k][l] - sc->j[k][l + 1]))))				);
+		}
 		else
-			dot(sc, sc->j[k][l] + a, sc->i[k][l] + b,  (((sc->R[k][l] << 8) + sc->G[k][l]) << 8) + sc->B[k][l]);
+			dot(sc, sc->j[k][l] + a, sc->i[k][l] + b,
+				(((		(int)(sc->R[k][l] + (a * ((sc->R[k][l + 1] - sc->R[k][l]) / fabs(sc->j[k][l] - sc->j[k][l + 1]))))			<< 8) +
+						(int)(sc->G[k][l] + (a * ((sc->G[k][l + 1] - sc->G[k][l]) / fabs(sc->j[k][l] - sc->j[k][l + 1])))))			<< 8) +
+						(int)(sc->B[k][l] + (a * ((sc->B[k][l + 1] - sc->B[k][l]) / fabs(sc->j[k][l] - sc->j[k][l + 1]))))				);
 		++a;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -366,9 +373,15 @@ void	join_dots_up_more_y(t_dt *sc, int k, int l)
 	{
 		b += fabs((sc->j[k][l + 1]) - sc->j[k][l]) / fabs(sc->i[k][l + 1] - sc->i[k][l]);
 		if (sc->i[k][l + 1] < sc->i[k][l])
-			dot(sc, sc->j[k][l] + b, sc->i[k][l] - a, 0xFFFFFF);
+			dot(sc, sc->j[k][l] + b, sc->i[k][l] - a,
+				(((		(int)(sc->R[k][l] + (a * ((sc->R[k][l + 1] - sc->R[k][l]) / fabs(sc->i[k][l] - sc->i[k][l + 1]))))			<< 8) +
+						(int)(sc->G[k][l] + (a * ((sc->G[k][l + 1] - sc->G[k][l]) / fabs(sc->i[k][l] - sc->i[k][l + 1])))))			<< 8) +
+						(int)(sc->B[k][l] + (a * ((sc->B[k][l + 1] - sc->B[k][l]) / fabs(sc->i[k][l] - sc->i[k][l + 1]))))				);
 		else
-			dot(sc, sc->j[k][l] + b, sc->i[k][l] + a, 0xFFFFFF);
+			dot(sc, sc->j[k][l] + b, sc->i[k][l] + a,
+				(((		(int)(sc->R[k][l] + (a * ((sc->R[k][l + 1] - sc->R[k][l]) / fabs(sc->i[k][l] - sc->i[k][l + 1]))))			<< 8) +
+						(int)(sc->G[k][l] + (a * ((sc->G[k][l + 1] - sc->G[k][l]) / fabs(sc->i[k][l] - sc->i[k][l + 1])))))			<< 8) +
+						(int)(sc->B[k][l] + (a * ((sc->B[k][l + 1] - sc->B[k][l]) / fabs(sc->i[k][l] - sc->i[k][l + 1]))))				);
 		++a;
 	}
 }
