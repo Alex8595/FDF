@@ -6,13 +6,13 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:52:30 by ahernand          #+#    #+#             */
-/*   Updated: 2022/11/02 14:23:58 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/11/03 12:23:59 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
 
-int		ft_error(int code)
+int	ft_error(int code)
 {
 	if (code == 1)
 		printf("Usage : ./fdf <filename> [ case_size z_size ]\n");
@@ -27,9 +27,4 @@ int		ft_error(int code)
 	if (code == 100)
 		printf("Malloc Error.\n");
 	return (1);
-}
-
-void	ft_leaks()
-{
-	system("leaks fdf");
 }

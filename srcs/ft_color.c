@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_color.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahernand <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 11:24:19 by ahernand          #+#    #+#             */
-/*   Updated: 2022/11/01 15:33:39 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/11/03 12:23:06 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	ft_color_alloc(t_dt *sc, char **raw)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	sc->R = malloc(sizeof(int*) * sc->size_y);
-	sc->G = malloc(sizeof(int*) * sc->size_y);
-	sc->B = malloc(sizeof(int*) * sc->size_y);
+	sc->R = malloc(sizeof(int *) * sc->size_y);
+	sc->G = malloc(sizeof(int *) * sc->size_y);
+	sc->B = malloc(sizeof(int *) * sc->size_y);
 	while (i < sc->size_y)
 	{
 		sc->R[i] = malloc(sizeof(int) * (ft_n_dots(raw[i])));
@@ -34,7 +34,7 @@ void	ft_color_alloc(t_dt *sc, char **raw)
 
 void	array_int_init_to_0(int *arr, int size)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < size)

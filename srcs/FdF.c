@@ -6,13 +6,18 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 15:39:32 by ahernand          #+#    #+#             */
-/*   Updated: 2022/11/01 11:50:54 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/11/03 12:24:10 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
 
-int main(int argc, char **argv)
+//void	ft_leaks(void)
+//{
+//	system("leaks fdf");
+//}
+
+int	main(int argc, char **argv)
 {
 	t_dt		sc;
 
@@ -32,10 +37,6 @@ int main(int argc, char **argv)
 	}
 	exit(ft_error(1));
 }
-
-//leak when non existent file .fdf
-//Empty map crashes
-
 
 void	ft_init_vars(t_dt *sc)
 {
