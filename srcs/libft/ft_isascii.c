@@ -6,13 +6,13 @@
 /*   By: ahernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 16:20:41 by ahernand          #+#    #+#             */
-/*   Updated: 2019/12/12 19:00:28 by ahernand         ###   ########.fr       */
+/*   Updated: 2021/08/02 13:28:40 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_isascii(int c)
+int	ft_isascii(int c)
 {
 	if (c >= 0 && c <= 0177)
 		return (1);

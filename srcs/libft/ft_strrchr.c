@@ -6,7 +6,7 @@
 /*   By: ahernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 15:29:10 by ahernand          #+#    #+#             */
-/*   Updated: 2019/11/15 15:31:18 by ahernand         ###   ########.fr       */
+/*   Updated: 2021/08/02 15:16:14 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strrchr(const char *str, int c)
 	int				i;
 	int				y;
 
-	s = (char*)str;
+	s = (char *)str;
 	loc = c;
 	i = 0;
 	y = -1;

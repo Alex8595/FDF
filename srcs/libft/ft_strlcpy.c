@@ -6,7 +6,7 @@
 /*   By: ahernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 20:44:22 by ahernand          #+#    #+#             */
-/*   Updated: 2019/11/28 19:38:07 by ahernand         ###   ########.fr       */
+/*   Updated: 2021/08/02 15:13:07 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 
 	i = 0;
 	ls = 0;
-	ddst = (char*)dst;
-	ssrc = (char*)src;
+	ddst = (char *)dst;
+	ssrc = (char *)src;
 	if (!dst || !src)
 		return (0);
 	while (ssrc[ls] != '\0')

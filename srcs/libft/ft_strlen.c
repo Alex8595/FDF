@@ -6,7 +6,7 @@
 /*   By: ahernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 19:23:56 by ahernand          #+#    #+#             */
-/*   Updated: 2019/11/14 16:34:37 by ahernand         ###   ########.fr       */
+/*   Updated: 2021/08/02 15:13:23 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ size_t	ft_strlen(const char *s)
 	char	*ss;
 
 	i = 0;
-	ss = (char*)s;
-	while (s[i] != '\0')
+	ss = (char *)s;
+	while (ss[i] != '\0')
 		i++;
 	return (i);
 }

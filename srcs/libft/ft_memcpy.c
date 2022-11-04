@@ -6,7 +6,7 @@
 /*   By: ahernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 18:24:01 by ahernand          #+#    #+#             */
-/*   Updated: 2019/11/18 19:43:28 by ahernand         ###   ########.fr       */
+/*   Updated: 2021/08/02 13:50:26 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
 	char	*d;
 	char	*s;
 
-	d = (char*)dst;
-	s = (char*)src;
+	d = (char *)dst;
+	s = (char *)src;
 	i = 0;
 	if (dst == '\0' && src == '\0')
 		return (0);

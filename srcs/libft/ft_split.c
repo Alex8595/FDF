@@ -6,13 +6,13 @@
 /*   By: ahernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 14:12:36 by ahernand          #+#    #+#             */
-/*   Updated: 2019/12/27 15:05:15 by ahernand         ###   ########.fr       */
+/*   Updated: 2021/08/02 14:06:28 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		pos_word(char *s, char c, unsigned int order)
+static int	pos_word(char *s, char c, unsigned int order)
 {
 	int				is_word;
 	unsigned int	cnt;
@@ -37,7 +37,7 @@ static int		pos_word(char *s, char c, unsigned int order)
 	return (pos);
 }
 
-static int		count_words(char *s, char c)
+static int	count_words(char *s, char c)
 {
 	int				is_word;
 	unsigned int	cnt;
@@ -58,7 +58,7 @@ static int		count_words(char *s, char c)
 	return (cnt);
 }
 
-static char		*assign_word(char *s, char c)
+static char	*assign_word(char *s, char c)
 {
 	unsigned int	i;
 	unsigned int	len;
@@ -67,7 +67,8 @@ static char		*assign_word(char *s, char c)
 	len = 0;
 	while (s[len] != '\0' && s[len] != c)
 		len++;
-	if (!(str = (char*)malloc(sizeof(char) * (len + 1))))
+	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (!str)
 		return (0);
 	i = 0;
 	while (i < len)
@@ -76,7 +77,7 @@ static char		*assign_word(char *s, char c)
 	return (str);
 }
 
-char			**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	unsigned int	nb;
 	unsigned int	i;
@@ -85,9 +86,10 @@ char			**ft_split(char const *s, char c)
 
 	if (!s)
 		return (0);
-	ptr = (char*)s;
+	ptr = (char *)s;
 	nb = count_words(ptr, c);
-	if (!(str = (char**)malloc(sizeof(char*) * (nb + 1))))
+	str = (char **)malloc(sizeof(char *) * (nb + 1));
+	if (!str)
 		return (0);
 	i = 0;
 	while (i < nb)

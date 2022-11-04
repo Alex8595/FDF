@@ -6,22 +6,23 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 15:39:32 by ahernand          #+#    #+#             */
-/*   Updated: 2022/11/03 12:24:10 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/11/04 12:20:49 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
 
-//void	ft_leaks(void)
-//{
-//	system("leaks fdf");
-//}
+/*void	ft_leaks(void)
+**{
+**	system("leaks fdf");
+**	atexit(ft_leaks);
+**}
+*/
 
 int	main(int argc, char **argv)
 {
 	t_dt		sc;
 
-	atexit(ft_leaks);
 	ft_init_vars(&sc);
 	if (argc == 2)
 	{
@@ -33,7 +34,7 @@ int	main(int argc, char **argv)
 			mlx_loop(sc.mlx);
 		}
 		else
-			exit(ft_clean_dt(&sc));
+			exit(1);
 	}
 	exit(ft_error(1));
 }
@@ -48,4 +49,7 @@ void	ft_init_vars(t_dt *sc)
 	sc->line_depth = 20;
 	sc->fullcreen = 0;
 	sc->fullcreen_vertical = 0;
+	sc->h = 0;
+	sc->k = 0;
+	sc->l = 0;
 }

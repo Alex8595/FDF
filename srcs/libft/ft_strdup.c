@@ -6,7 +6,7 @@
 /*   By: ahernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 16:36:35 by ahernand          #+#    #+#             */
-/*   Updated: 2019/11/18 20:31:43 by ahernand         ###   ########.fr       */
+/*   Updated: 2021/08/02 14:08:33 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,15 @@ char	*ft_strdup(const char *s1)
 	int		l;
 	int		j;
 
-	str = (char*)s1;
+	str = (char *)s1;
 	l = 0;
 	j = 0;
 	if (!(str[0]))
 		return (empty = ft_calloc(1, 1));
 	while (str[l] != '\0')
 		l++;
-	if ((cstr = (malloc(l + 1))) == NULL)
+	cstr = (malloc(l + 1));
+	if (cstr == NULL)
 		return (0);
 	while (j < (l + 1))
 	{

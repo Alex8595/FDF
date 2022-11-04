@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 11:24:19 by ahernand          #+#    #+#             */
-/*   Updated: 2022/11/03 12:23:06 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:01:39 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@ void	ft_color_alloc(t_dt *sc, char **raw)
 	int	i;
 
 	i = 0;
-	sc->R = malloc(sizeof(int *) * sc->size_y);
-	sc->G = malloc(sizeof(int *) * sc->size_y);
-	sc->B = malloc(sizeof(int *) * sc->size_y);
+	sc->r = malloc(sizeof(int *) * sc->size_y);
+	sc->g = malloc(sizeof(int *) * sc->size_y);
+	sc->b = malloc(sizeof(int *) * sc->size_y);
 	while (i < sc->size_y)
 	{
-		sc->R[i] = malloc(sizeof(int) * (ft_n_dots(raw[i])));
-		sc->G[i] = malloc(sizeof(int) * (ft_n_dots(raw[i])));
-		sc->B[i] = malloc(sizeof(int) * (ft_n_dots(raw[i])));
-		array_int_init_to_0(sc->R[i], sc->size_x);
-		array_int_init_to_0(sc->G[i], sc->size_x);
-		array_int_init_to_0(sc->B[i], sc->size_x);
+		sc->r[i] = malloc(sizeof(int) * (ft_n_dots(raw[i])));
+		sc->g[i] = malloc(sizeof(int) * (ft_n_dots(raw[i])));
+		sc->b[i] = malloc(sizeof(int) * (ft_n_dots(raw[i])));
+		array_int_init_to_0(sc->r[i], sc->size_x);
+		array_int_init_to_0(sc->g[i], sc->size_x);
+		array_int_init_to_0(sc->b[i], sc->size_x);
 		++i;
 	}
 }

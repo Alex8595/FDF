@@ -6,7 +6,7 @@
 /*   By: ahernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 18:18:47 by ahernand          #+#    #+#             */
-/*   Updated: 2019/12/27 13:53:19 by ahernand         ###   ########.fr       */
+/*   Updated: 2021/08/13 18:15:59 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static unsigned int	count_digit(unsigned int n)
 	return (cnt + 1);
 }
 
-static void			assign_num(unsigned int num, char *ptr)
+static void	assign_num(unsigned int num, char *ptr)
 {
 	*ptr-- = '\0';
 	if (num == 0)
@@ -37,20 +37,29 @@ static void			assign_num(unsigned int num, char *ptr)
 	}
 }
 
-char				*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char			*str;
 	unsigned int	cnt;
 	unsigned int	sign;
 	unsigned int	num;
 
-	num = (n < 0) ? -n : n;
-	sign = (n < 0) ? 1 : 0;
+	sign = 0;
+	num = n;
+	if (n < 0)
+	{
+		num = -n;
+		sign = 1;
+	}
 	cnt = count_digit(num);
-	if (!(str = (char*)malloc(sizeof(char) * (cnt + sign + 1))))
+	str = (char *)malloc(sizeof(char) * (cnt + sign + 1));
+	if (!str)
 		return (0);
-	if (sign == 1 && (*str = '-'))
+	if (sign == 1)
+	{
+		*str = '-';
 		assign_num(num, str + cnt + 1);
+	}
 	else
 		assign_num(num, str + cnt);
 	return (str);

@@ -6,7 +6,7 @@
 /*   By: ahernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 15:16:24 by ahernand          #+#    #+#             */
-/*   Updated: 2019/12/03 14:23:42 by ahernand         ###   ########.fr       */
+/*   Updated: 2021/08/02 14:07:46 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strchr(const char *str, int c)
 	unsigned char	loc;
 	int				i;
 
-	s = (char*)str;
+	s = (char *)str;
 	loc = c;
 	i = 0;
 	while (s[i] != '\0')
