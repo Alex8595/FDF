@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahernand <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/02 17:23:51 by ahernand          #+#    #+#             */
-/*   Updated: 2020/03/06 15:20:53 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/11/09 11:57:07 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ size_t	ft_strlen(const char *s)
 	char	*ss;
 
 	i = 0;
-	ss = (char*)s;
+	ss = (char *)s;
 	while (s[i] != '\0')
 		i++;
 	return (i);
@@ -65,8 +65,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	if (!s1 || !s2)
 		return (0);
-	if ((str = ((char*)malloc(sizeof(char) * (ft_strlen(s1) +
-							ft_strlen(s2) + 1)))) == NULL)
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s1)));
+	if (!str)
 		return (0);
 	cpy_str = str;
 	if (s1)
@@ -87,7 +87,8 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 	i = 0;
 	if (s)
 	{
-		if (!(str = (char*)malloc(sizeof(char) * (int)len + 1)))
+		str = (char *)malloc(sizeof(char) * (int)len + 1);
+		if (!str)
 			return (NULL);
 		ft_bzero(str, len);
 		if (start <= ft_strlen(s))

@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 18:43:01 by ahernand          #+#    #+#             */
-/*   Updated: 2022/11/03 12:21:40 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/11/09 11:34:21 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ int	ft_close(int keycode, t_dt *vars)
 	return (0);
 }
 
-int	ft_cross(int keycode, t_dt *vars)
+int	ft_cross(void)
 {
-	keycode = 0;
 	exit(0);
 }

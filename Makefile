@@ -6,7 +6,7 @@
 #    By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/30 14:35:00 by ahernand          #+#    #+#              #
-#    Updated: 2022/11/03 12:11:46 by ahernand         ###   ########.fr        #
+#    Updated: 2022/11/09 11:32:03 by ahernand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = fdf
 
 CC = gcc 
 
-CFLAGS = #-Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 
 SRCS =	srcs/FdF.c								\
 		srcs/mlx_fts.c							\
@@ -23,6 +23,7 @@ SRCS =	srcs/FdF.c								\
 		srcs/ft_save_raw.c						\
 		srcs/ft_exec.c							\
 		srcs/ft_coordinates.c					\
+		srcs/hexadecimal_fts.c					\
 		srcs/ft_color.c							\
 		srcs/ft_error.c
 
@@ -34,6 +35,7 @@ OBJS = srcs/FdF.o								\
 		srcs/ft_save_raw.o						\
 		srcs/ft_exec.o							\
 		srcs/ft_coordinates.o					\
+		srcs/hexadecimal_fts.o					\
 		srcs/ft_color.o							\
 		srcs/ft_error.o
 

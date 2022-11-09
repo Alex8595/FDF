@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 16:40:10 by ahernand          #+#    #+#             */
-/*   Updated: 2022/11/03 12:10:18 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/11/09 11:56:31 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_free(char **str)
 	}
 }
 
-int		ft_save_line(char **saved, char **line, int fd)
+int	ft_save_line(char **saved, char **line, int fd)
 {
 	int		i;
 	char	*aux;
@@ -36,7 +36,7 @@ int		ft_save_line(char **saved, char **line, int fd)
 	return (1);
 }
 
-int		ft_ret(char **saved, char **line, int fd, int n_read)
+int	ft_ret(char **saved, char **line, int fd, int n_read)
 {
 	if (n_read < 0)
 		return (-1);
@@ -56,17 +56,17 @@ int		ft_ret(char **saved, char **line, int fd, int n_read)
 	}
 }
 
-int		get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line, int n_read)
 {
-	int			n_read;
 	static char	*saved[4096];
 	char		*tmp;
 	char		*aux;
 
-	if (fd < 0 || !line || BUFFER_SIZE < 1 ||
-		(!(tmp = (char*)malloc(sizeof(char) * BUFFER_SIZE + 1))))
+	tmp = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
+	if (fd < 0 || !line || BUFFER_SIZE < 1 || !(tmp))
 		return (-1);
-	while ((n_read = read(fd, tmp, BUFFER_SIZE)) > 0)
+	n_read = read(fd, tmp, BUFFER_SIZE);
+	while (n_read > 0)
 	{
 		tmp[n_read] = '\0';
 		if (saved[fd] == NULL)
@@ -79,6 +79,7 @@ int		get_next_line(int fd, char **line)
 		}
 		if (ft_strchr(saved[fd], '\n'))
 			break ;
+		n_read = read(fd, tmp, BUFFER_SIZE);
 	}
 	free(tmp);
 	return (ft_ret(saved, line, fd, n_read));

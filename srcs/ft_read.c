@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:29:52 by ahernand          #+#    #+#             */
-/*   Updated: 2022/11/03 12:17:58 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/11/09 13:21:25 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	ft_read(t_dt *sc, char *file)
 {
 	int		fd;
 	int		i;
-	int		size;
 	char	**raw;
 
 	i = 0;
@@ -38,7 +37,7 @@ int	ft_read(t_dt *sc, char *file)
 		free(raw);
 		exit(ft_error(3));
 	}
-	while (i < 3000 && get_next_line(fd, &raw[i]))
+	while (i < 3000 && get_next_line(fd, &raw[i], i))
 		++i;
 	if (i >= 3000)
 		return (ft_error(4));

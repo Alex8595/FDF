@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 18:33:13 by ahernand          #+#    #+#             */
-/*   Updated: 2022/11/04 12:34:00 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/11/09 13:29:00 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,9 @@ typedef struct t_dt
 	int				k;
 	int				l;
 
+	double			a;
+	double			bb;
+
 }					t_dt;
 
 /*
@@ -99,10 +102,16 @@ int					ft_n_dots(char *str);
 **					ft_fill_lines
 */
 
-int					ft_hextoint(char *str);
-int					ft_ishexa(int c);
+void				ft_store_hexa(t_dt *sc, char *aux, int *i);
 void				ft_fill_lines(t_dt *sc, char **raw, int i);
 void				ft_store_depth(t_dt *sc, char **raw, char *aux, int *i);
+
+/*
+**					hexadecimal_fts
+*/
+
+int					ft_hextoint(char *str);
+int					ft_ishexa(int c);
 
 /*
 **					Mlx Functions
@@ -110,7 +119,7 @@ void				ft_store_depth(t_dt *sc, char **raw, char *aux, int *i);
 
 void				my_mlx_pixel_put(t_dt *sc, int x, int y, int color);
 int					ft_close(int keycode, t_dt *vars);
-int					ft_cross(int keycode, t_dt *vars);
+int					ft_cross(void);
 
 /*
 **
