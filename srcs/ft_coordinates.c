@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:11:20 by ahernand          #+#    #+#             */
-/*   Updated: 2022/11/04 11:18:46 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/11/11 11:44:51 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 **		ft_coordinates
 **
 **		Stores the coordinates of the dots in arrays
-**
 **
 */
 

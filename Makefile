@@ -6,7 +6,7 @@
 #    By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/30 14:35:00 by ahernand          #+#    #+#              #
-#    Updated: 2022/11/09 11:32:03 by ahernand         ###   ########.fr        #
+#    Updated: 2022/11/11 12:01:04 by ahernand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,10 @@ SRCS =	srcs/FdF.c								\
 		srcs/ft_coordinates.c					\
 		srcs/hexadecimal_fts.c					\
 		srcs/ft_color.c							\
+		srcs/color_1_to_4.c						\
+		srcs/color_5_to_8.c						\
+		srcs/ft_exec_paint_up.c					\
+		srcs/ft_exec_paint_down.c				\
 		srcs/ft_error.c
 
 
@@ -37,12 +41,15 @@ OBJS = srcs/FdF.o								\
 		srcs/ft_coordinates.o					\
 		srcs/hexadecimal_fts.o					\
 		srcs/ft_color.o							\
+		srcs/color_1_to_4.o						\
+		srcs/color_5_to_8.o						\
+		srcs/ft_exec_paint_up.o					\
+		srcs/ft_exec_paint_down.o				\
 		srcs/ft_error.o
 
 MLX = lib_mlx
 
 LIBFT = libft
-
 
 all : $(NAME)
 
@@ -57,30 +64,7 @@ $(OBJS) : $(SRCS)
 $(NAME) : $(OBJS) $(MLX) $(LIBFT)
 	@$(CC) $(CFLAGS) $(OBJS) minilibx/libmlx.a srcs/libft/libft.a -framework OpenGl -framework AppKit -o $@
 
-
-
-
-
-
-
 .SILENT: MLX LIBFT
-
-
-
-
-
-
-
-# - - - - - - - - - - - - - - - - - #
-# - - - - - - T E S T - - - - - - - #
-# - - - - - - - - - - - - - - - - - #
-
-test:
-
-
-
-
-
 
 
 # - - - - - - - - - - - - - - - - - #

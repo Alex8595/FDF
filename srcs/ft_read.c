@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:29:52 by ahernand          #+#    #+#             */
-/*   Updated: 2022/11/09 13:21:25 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/11/11 11:54:49 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,17 @@
 **
 */
 
+int	ft_empty(char *file)
+{
+	int fd;
+	char tmp;
+	
+	fd = open(file, O_RDONLY);
+	if (read(fd, &tmp, 1) == 0)
+		return (1);
+	return (0);
+}
+
 int	ft_read(t_dt *sc, char *file)
 {
 	int		fd;
@@ -27,7 +38,7 @@ int	ft_read(t_dt *sc, char *file)
 
 	i = 0;
 	raw = malloc(sizeof(char *) * 3000);
-	if (!raw)
+	if (!raw || ft_empty(file))
 		return (ft_error(100));
 	if (ft_strlen(file) <= 0)
 		return (ft_error(2));
