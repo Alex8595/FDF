@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 15:39:32 by ahernand          #+#    #+#             */
-/*   Updated: 2022/11/11 12:09:36 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/11/14 18:45:16 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,10 @@ void	ft_leaks(void)
 	system("leaks fdf");
 }
 
-
 int	main(int argc, char **argv)
 {
 	t_dt		sc;
-	
+
 	atexit(ft_leaks);
 	ft_init_vars(&sc);
 	if (argc == 2)
@@ -44,6 +43,10 @@ void	ft_init_vars(t_dt *sc)
 	sc->angle = 0;
 	sc->highest_y = 0;
 	sc->lowest_y = 0;
+	sc->highest_y_i = 0;
+	sc->highest_y_j = 0;
+	sc->lowest_y_i = 0;
+	sc->lowest_y_j = 0;
 	sc->line_height = 7;
 	sc->line_width = 14;
 	sc->line_depth = 20;

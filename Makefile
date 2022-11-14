@@ -6,13 +6,13 @@
 #    By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/30 14:35:00 by ahernand          #+#    #+#              #
-#    Updated: 2022/11/11 12:01:04 by ahernand         ###   ########.fr        #
+#    Updated: 2022/11/14 12:42:42 by ahernand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
-CC = gcc 
+CC = cc 
 
 CFLAGS = -Wall -Wextra -Werror
 

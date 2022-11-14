@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 18:33:13 by ahernand          #+#    #+#             */
-/*   Updated: 2022/11/11 11:28:59 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/11/14 12:17:26 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ void				ft_init_vars(t_dt *sc);
 **					ft_read
 */
 
+int					ft_empty(char *file);
+int					ft_right_end(char *file);
 int					ft_read(t_dt *sc, char *ft_read);
 void				ft_free_raw(t_dt *sc, char **raw);
 
@@ -110,8 +112,8 @@ void				ft_store_depth(t_dt *sc, char **raw, char *aux, int *i);
 **					hexadecimal_fts
 */
 
-int					ft_hextoint(char *str);
 int					ft_ishexa(int c);
+int					ft_hextoint(char *str);
 
 /*
 **					Mlx Functions

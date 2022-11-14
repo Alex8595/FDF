@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:29:29 by ahernand          #+#    #+#             */
-/*   Updated: 2022/11/11 11:43:12 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/11/14 18:45:31 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ void	ft_lenght_lines(t_dt *sc)
 	if ((((sc->size_x - 1) * 14) + ((sc->size_y - 1) * 14) + 100 <= 1920)
 		&& ft_calculate_height(sc) <= 1080)
 	{
+		sc->line_depth = 20;
 		sc->line_height = 7;
 		sc->line_width = 14;
-		sc->line_depth = 20;
 	}
 	else if ((((sc->size_x - 1) * 14) + ((sc->size_y - 1) * 14) + 100)
 		> ft_calculate_height(sc))
@@ -80,7 +80,9 @@ void	ft_lenght_lines(t_dt *sc)
 		sc->line_depth = sc->line_width * 20 / 14;
 	}
 	else
+	{
 		ft_fullscreen_vertical_helper(sc);
+	}
 }
 
 /*

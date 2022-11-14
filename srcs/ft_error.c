@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:52:30 by ahernand          #+#    #+#             */
-/*   Updated: 2022/11/03 12:23:59 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/11/14 12:26:32 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	ft_error(int code)
 		printf("Size of map too big.\n");
 	if (code == 5)
 		printf("Found wrong line length. Exiting.\n");
+	if (code == 6)
+		printf("Incorrect extension.\n");
 	if (code == 100)
 		printf("Malloc Error.\n");
 	return (1);
