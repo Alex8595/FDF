@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:29:52 by ahernand          #+#    #+#             */
-/*   Updated: 2022/11/14 12:41:00 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/11/21 17:34:28 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,6 @@
 **		This function will save the information given though a file
 **
 */
-
-int	ft_empty(char *file)
-{
-	int		fd;
-	char	tmp;
-	char	prev_c;
-
-	fd = open(file, O_RDONLY);
-	if (read(fd, &tmp, 1) == 0)
-		return (1);
-	prev_c = tmp;
-	while (read(fd, &tmp, 1) > 0)
-	{
-		if (prev_c == '\n' && tmp == '\n')
-			return (1);
-		prev_c = tmp;
-	}
-	return (0);
-}
 
 int	ft_right_end(char *file)
 {
@@ -57,7 +38,7 @@ int	ft_read(t_dt *sc, char *file)
 
 	i = 0;
 	raw = malloc(sizeof(char *) * 3000);
-	if (!raw || ft_empty(file))
+	if (!raw)
 		exit(ft_error(100));
 	if (ft_right_end(file))
 		exit(ft_error(6));

@@ -6,7 +6,7 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 12:11:03 by ahernand          #+#    #+#             */
-/*   Updated: 2022/11/04 11:00:41 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/11/21 17:23:49 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ int	ft_longest_str(t_dt *sc, char **raw)
 	{
 		if (ft_strlen(raw[i]) > ft_strlen(raw[longest]))
 			longest = i;
+		if (ft_n_dots(raw[i]) != ft_n_dots(raw[0]))
+			exit(ft_error(7));
 		++i;
 	}
 	return (longest);

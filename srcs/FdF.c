@@ -6,22 +6,22 @@
 /*   By: ahernand <ahernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 15:39:32 by ahernand          #+#    #+#             */
-/*   Updated: 2022/11/14 18:45:16 by ahernand         ###   ########.fr       */
+/*   Updated: 2022/11/21 17:51:11 by ahernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
 
-void	ft_leaks(void)
-{
-	system("leaks fdf");
-}
+//void	ft_leaks(void)
+//{
+//	system("leaks fdf");
+//}
+//atexit(ft_leaks);
 
 int	main(int argc, char **argv)
 {
 	t_dt		sc;
 
-	atexit(ft_leaks);
 	ft_init_vars(&sc);
 	if (argc == 2)
 	{
@@ -57,4 +57,6 @@ void	ft_init_vars(t_dt *sc)
 	sc->l = 0;
 	sc->a = 0;
 	sc->b = 0;
+	sc->width = 0;
+	sc->height = 0;
 }
